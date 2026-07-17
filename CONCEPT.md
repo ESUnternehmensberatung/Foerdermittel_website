@@ -1,6 +1,6 @@
 # Fördermittel-Finder — Markenkonzept & Content-/SEO-Strategie
 
-Stand: 17.07.2026 · Verfasser: Konzeptentwurf für Eduard Schmal (Schmal Unternehmensberatung) & Prospero Unternehmensberatung Hamburg
+Stand: 17.07.2026 · Verfasser: Konzeptentwurf für Eduard Schmal (ES | Unternehmensberatung) & Prospero Beratungsgesellschaft mbH (Hamburg)
 
 ---
 
@@ -11,7 +11,7 @@ Die bestehende Seite (fördermittel-finder.de) war ein schneller Start. Jetzt en
 1. **Freebie-Download** (sofort, ohne Hürde) → Vertrauensaufbau, Backlink-Magnet, Retargeting-Basis
 2. **Kostenloser Fördermittelbericht** (qualifizierter Lead, mit Kontaktdaten) → Ziel: **BAFA-geförderte Erstberatung** → **Beratungsmandat**
 
-Kooperationsmodell: **Eduard Schmal / Schmal Unternehmensberatung** = Content- und Seitenverantwortung, Erstkontakt, Fördermittel-Check. **Prospero Unternehmensberatung Hamburg** = BAFA-zertifizierter Beratungspartner, der die geförderte Beratung durchführt. Die Seite positioniert beide als ein gemeinsames Kompetenzteam ("Fördermittel-Finder ist eine Kooperation von …").
+Kooperationsmodell: **Eduard Schmal / ES | Unternehmensberatung** = Content- und Seitenverantwortung, Erstkontakt, Fördermittel-Check. **Prospero Beratungsgesellschaft mbH (Hamburg)** = BAFA-zertifizierter Beratungspartner, der die geförderte Beratung durchführt. Die Seite positioniert beide als ein gemeinsames Kompetenzteam ("Fördermittel-Finder ist eine Kooperation von …").
 
 ---
 
@@ -69,10 +69,22 @@ Typische KI-generierte Landingpages erkennt man an: Inter/Manrope-Font überall,
 
 ### 3.4 Bildsprache & Motion
 
-- Echte Portraitfotos (Eduard Schmal, Prospero-Berater:innen) freigestellt vor Tanne-Ink-Hintergrund, einheitlicher Fotostil
+- Echte Portraitfotos (Eduard Schmal, Prospero-Berater:innen) freigestellt vor Tanne-Ink-Hintergrund, einheitlicher Fotostil — bis diese vorliegen, bleiben Personenflächen bewusst abstrakt statt mit fremden Stockfoto-Gesichtern aufgefüllt
+- Kuratierte, lizenzfreie Editorial-Fotografie/-Bewegtbild (keine Personen, die als Eduard Schmal oder das Prospero-Team ausgegeben werden) für Atmosphäre: Hero-Video, Bürogebäude, Arbeits-/Dokumentenszenen — konsequent in Marken-Farbgrading (entsättigt, Tanne/Gold-Tonwert) statt im Rohzustand, damit Stockmaterial nicht „stockig" wirkt
 - Eigene, reduzierte Linien-Illustrationen: stilisierte Deutschlandkarte mit Förderknoten, Prozesspfeile, Dokumenten-/Siegel-Icons im selben Strichstil (kein Icon-Mix aus Libraries)
 - Dezente Scroll-Reveals (fade+8px translate), keine Bounce-Animationen, keine Partikel-Hintergründe
 - Ein wiederkehrendes Gestaltungselement: eine dünne „Fortschrittslinie" (Gold), die den 4-Schritte-Prozess visuell durch die Seite zieht — als Wiedererkennungsmerkmal
+
+### 3.5 Wiedererkennungswert: Bericht ↔ Website
+
+Der reale Fördermittelbericht (Word/PDF, den Eduard Schmal als Referenz zur Verfügung gestellt hat) ist kein grafisch aufwendiges Corporate-Design, sondern eine klare, tabellarische Steckbrief-Logik. Genau diese Struktur spiegeln wir bewusst auf der Website, damit Bericht und Seite wie ein System wirken:
+
+- **Ampel-/Status-System:** „aktiv", „zu prüfen", „nicht einschlägig" als farbige Status-Punkte — dieselbe Wortwahl und Farbcodierung auf Website (Report-Preview, Prozess-Sektion) und im Bericht
+- **Erfolgsaussicht-Badge:** „Hoch" / „Mittel bis Hoch" / „Gering bis Mittel" statt einer erfundenen „Match-%"-Kennzahl — näher an der tatsächlichen Beratungssprache
+- **Instrumenten-Farbcode** (aus dem Bericht übernommen, auf der Website als kleine Kategorie-Pills genutzt): Kredit/Fremdkapital = Blau, Bürgschaft = Türkis, Zuschuss = Grün, Steuerhebel = Violett, Personalförderung/Bonus = Orange — als sekundäre, kategoriale Farbebene *zusätzlich* zur Markenpalette (nicht als Ersatz)
+- **Steckbrief-Muster pro Programm:** Kurzform → Fördergeber/Konditionen/Antragsweg/Quelle → Erfolgsaussicht → Stärken/Risiken/Offene Punkte → To-Do's mit Frist — dieses Muster taucht in der Report-Preview auf der Startseite und in der Programm-Darstellung der Content-Unterseiten wieder auf
+- **Bericht-Metadaten-Format:** Bericht-Nr. „FF-2026-XXX", Berichtsdatum, Recherchestand, Vertraulichkeitshinweis, Fußzeile „Ein gemeinsames Angebot von Prospero Beratungsgesellschaft mbH & ES | Unternehmensberatung" — exakt dieser Rahmen wird auf der Website als visuelles Vorschau-Objekt reproduziert (mit rein fiktiven Beispieldaten, keinen echten Mandantendaten)
+- **Empfehlung für die Bericht-Vorlage selbst:** Perspektivisch die Word-Vorlage von den Standard-Office-Diagrammfarben (Blau/Violett/Grün aus dem Default-Theme) auf die Marken-Palette umstellen — dann ist der Wiedererkennungswert nicht nur website-seitig, sondern beidseitig
 
 ---
 
@@ -106,7 +118,7 @@ Jede Förderprogramm-Unterseite verlinkt auf die Pillar-Seite und umgekehrt (Hub
 
 1. **Header** — sticky, transparent→solid on scroll. Logo, Nav (Leistungen · Für Bestandsunternehmen · Ablauf · Wissen · Über uns), CTA-Button „Fördermittelbericht anfordern"
 2. **Hero** — zweizeilige Serifen-Headline mit Ergebnisversprechen + Subline, Doppel-CTA (primär: Fördermittelbericht; sekundär: Checkliste downloaden), 3 Trust-Kennzahlen (z. B. „2.500+ Förderprogramme geprüft", „Ø 48 h bis zum Bericht", „BAFA-gelistete Beratung"), rechts: eigene Liniengrafik statt Stockfoto/Dashboard-Mock
-3. **Trust-/Partnerleiste** — BAFA-Logo/Badge (sofern nutzungsrechtlich zulässig, sonst Textbadge „BAFA-gelistete Beratung"), Logos Prospero & Schmal Unternehmensberatung, ggf. Kammer-Mitgliedschaften
+3. **Trust-/Partnerleiste** — BAFA-Logo/Badge (sofern nutzungsrechtlich zulässig, sonst Textbadge „BAFA-gelistete Beratung"), Logos Prospero & ES | Unternehmensberatung, ggf. Kammer-Mitgliedschaften
 4. **Problem-Sektion** — „20 Mrd. € ungenutzte Fördermittel pro Jahr" als große Gold-Zahl, drei Pain-Points (Unübersichtlichkeit von 2.500+ Programmen · Zeitaufwand · Formfehler-Ablehnungsrisiko)
 5. **Lösung / 4-Schritte-Prozess** — mit der Gold-Fortschrittslinie: (1) Kurzcheck 5 Min. → (2) Kostenloser Fördermittelbericht → (3) BAFA-geförderte Erstberatung (Prospero) → (4) Antragsbegleitung & Umsetzung
 6. **Für wen** — Segmentkarten (Digitalisierung, Nachfolge, Energieeffizienz, Weiterbildung, Wachstum) mit Kurztext + Link zur jeweiligen Unterseite
@@ -171,8 +183,8 @@ Checkliste mit den wichtigsten Programmen für Bestandsunternehmen, Fristen, Fö
 
 Da zwei rechtlich selbstständige Unternehmen kooperieren, wird empfohlen:
 
-- **Diensteanbieter/inhaltlich Verantwortlicher (§ 5 TMG, § 18 Abs. 2 MStV):** Schmal Unternehmensberatung (Eduard Schmal), da er laut Vorgabe die Seite inhaltlich verantwortet und betreibt
-- **Kooperationshinweis im Impressum:** Prospero Unternehmensberatung GmbH (Hamburg) wird als Kooperationspartner für die BAFA-geförderte Beratungsleistung ausgewiesen, mit Verweis/Link auf deren eigenes Impressum
+- **Diensteanbieter/inhaltlich Verantwortlicher (§ 5 TMG, § 18 Abs. 2 MStV):** ES | Unternehmensberatung (Eduard Schmal), da er laut Vorgabe die Seite inhaltlich verantwortet und betreibt
+- **Kooperationshinweis im Impressum:** Prospero Beratungsgesellschaft mbH (Hamburg) wird als Kooperationspartner für die BAFA-geförderte Beratungsleistung ausgewiesen, mit Verweis/Link auf deren eigenes Impressum
 - **Datenschutzerklärung:** muss offenlegen, dass Anfragedaten aus dem Fördermittelbericht-Formular zur Bearbeitung an Prospero weitergegeben werden können, sobald ein Beratungsanliegen konkret wird (Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO, ggf. gemeinsame Verantwortlichkeit nach Art. 26 DSGVO oder Auftragsverarbeitung — hängt von der genauen Ausgestaltung der Kooperation ab)
 - **Empfehlung:** finale Formulierung von einer auf DSGVO spezialisierten Kanzlei prüfen lassen, bevor der Fördermittelbericht live personenbezogene Daten sammelt — dies ist kein Ersatz für Rechtsberatung
 
