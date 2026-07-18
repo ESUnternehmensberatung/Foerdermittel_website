@@ -1,30 +1,36 @@
 ---
+import { withBase } from '../../lib/base';
+
+// Ablauf-Struktur von Oliver Schettle / Prospero (bestehende Seite) übernommen,
+// vorangestellt der kostenlose Fördermittelbericht als unser Akquiseinstrument —
+// auf der bestehenden Seite kein eigener Schritt, bei uns der Einstiegspunkt.
 const steps = [
-  { n: 'SCHRITT 1', title: 'Kurzcheck', text: '5 Minuten, Branche & Vorhaben.' },
-  { n: 'SCHRITT 2', title: 'Fördermittelbericht', text: 'Passende Programme & Fördersätze — kostenlos.' },
-  { n: 'SCHRITT 3', title: 'BAFA-Erstberatung', text: 'Mit Prospero, i. d. R. 50–80 % Zuschuss.' },
-  { n: 'SCHRITT 4', title: 'Antrag & Umsetzung', text: 'Begleitung bis zur Bewilligung.' },
+  { n: '01', title: 'Kostenloser Fördermittelbericht', text: 'Lassen Sie sich zeigen, welche Fördermittel Ihnen zustehen — kostenlos und unverbindlich.', highlight: true },
+  { n: '02', title: 'Fördermittelberatung', text: 'Wir analysieren Ihr Vorhaben und identifizieren geeignete Förderprogramme.' },
+  { n: '03', title: 'Antragstellung', text: 'Wir begleiten Sie durch den gesamten Antragsprozess, von der Erstellung der notwendigen Unterlagen bis zur Einreichung des Antrags.' },
+  { n: '04', title: 'Projektmanagement', text: 'Nach erfolgreicher Bewilligung unterstützen wir Sie bei der Umsetzung und Verwaltung Ihrer geförderten Projekte.' },
+  { n: '05', title: 'Verwendungsnachweis', text: 'Wir erstellen die notwendigen Mittelverwendungsnachweise und belegen die korrekte Verwendung gegenüber dem jeweiligen Fördermittelgeber.' },
+  { n: '06', title: 'Finanzplanung', text: 'Professionelle Finanzplanung mit allen Teilplänen — Liquidität, Rentabilität, Investitionen und Finanzierung. Individuell abgestimmt auf Ihr Vorhaben.' },
 ];
 ---
 
 <section id="ablauf" class="bg-ink px-6 py-16">
   <div class="mx-auto max-w-[1120px]">
     <p class="eyebrow-gold mb-3">So arbeiten wir</p>
-    <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.15rem]">
-      Vier Schritte bis zum bewilligten Antrag
+    <h2 class="mb-9 max-w-[32ch] text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.15rem]">
+      Von der kostenlosen Ersteinschätzung bis zum Verwendungsnachweis
     </h2>
-    <div class="reveal-group grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {steps.map((s, i) => (
-        <div>
-          <div class="mb-4 flex items-center">
-            <span class="h-3 w-3 flex-shrink-0 rounded-full bg-gold shadow-[0_0_0_5px_rgba(198,138,46,0.2)]"></span>
-            {i < steps.length - 1 && (
-              <span class="ml-2 h-0.5 flex-1 bg-gradient-to-r from-gold to-gold/25"></span>
-            )}
-          </div>
-          <p class="mb-1.5 font-mono text-[0.72rem] text-gold-soft">{s.n}</p>
+    <div class="reveal-group grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {steps.map((s) => (
+        <div class={`rounded-sm p-6 ${s.highlight ? 'border border-gold bg-gold/[0.07]' : 'border border-line-ink'}`}>
+          <p class={`mb-3 font-mono text-[0.72rem] ${s.highlight ? 'text-gold' : 'text-gold-soft/80'}`}>{s.n}</p>
           <h3 class="mb-1.5 font-display text-[1.05rem] font-semibold text-mist">{s.title}</h3>
           <p class="text-[0.86rem] leading-relaxed text-mist/75">{s.text}</p>
+          {s.highlight && (
+            <a href={withBase('/foerdermittelbericht/')} class="btn-gold mt-5 !px-4 !py-2.5 text-[0.82rem]">
+              Jetzt kostenlos anfordern
+            </a>
+          )}
         </div>
       ))}
     </div>
