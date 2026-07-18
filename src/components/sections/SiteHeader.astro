@@ -1,12 +1,6 @@
 ---
 import { withBase } from '../../lib/base';
-
-const nav = [
-  { label: 'Für Bestandsunternehmen', href: '/foerdermittel-bestandsunternehmen/' },
-  { label: 'Ablauf', href: '/#ablauf' },
-  { label: 'Wissen', href: '/wissen/' },
-  { label: 'Über uns', href: '/ueber-uns/' },
-];
+import { navItems } from '../../lib/nav';
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-between gap-6 border-b border-line-ink/60 bg-ink/95 px-6 py-4 backdrop-blur">
@@ -14,8 +8,8 @@ const nav = [
     Fördermittel<em class="not-italic text-gold-soft">-Finder</em>
   </a>
   <nav class="hidden gap-6 font-body text-sm text-mist md:flex">
-    {nav.map((item) => (
-      <a href={withBase(item.href)} class="border-b border-transparent pb-0.5 opacity-90 transition-colors hover:border-gold hover:opacity-100">
+    {navItems.map((item) => (
+      <a href={withBase(`/#${item.id}`)} class="border-b border-transparent pb-0.5 opacity-90 transition-colors hover:border-gold hover:opacity-100">
         {item.label}
       </a>
     ))}

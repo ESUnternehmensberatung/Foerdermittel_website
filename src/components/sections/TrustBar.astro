@@ -2,9 +2,14 @@
 const PROSPERO_FOUNDED = 1997;
 const yearsExperience = new Date().getFullYear() - PROSPERO_FOUNDED;
 
+// "2.500+" laut Eduard Schmal bewusst drinlassen (Stand: interne Absprache
+// 2026-07-18) — Quelle bleibt trotzdem ungeklärt (siehe Git-Historie), vor
+// einem echten Launch idealerweise noch mit einer zitierfähigen Quelle
+// unterlegen.
 const stats = [
-  { count: yearsExperience, suffix: '', label: 'Jahre Erfahrung' },
+  { count: 2500, suffix: '+', label: 'Förderprogramme in Deutschland (Bund, Länder, EU)' },
   { count: 500, suffix: '+', label: 'durchgeführte Beratungen' },
+  { count: yearsExperience, suffix: '', label: 'Jahre Erfahrung' },
   { count: 2, suffix: '', label: 'Beratungshäuser in Kooperation' },
 ];
 ---
