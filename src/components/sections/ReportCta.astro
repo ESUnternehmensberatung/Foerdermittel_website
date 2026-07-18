@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const points = [
   'Welche Programme zu Ihrem Vorhaben passen',
   'Fördersatz und maximale Fördersumme',
@@ -15,17 +17,18 @@ const cards = [
 <section class="bg-ink px-6 py-16">
   <div class="reveal-group mx-auto grid max-w-[1120px] grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr]">
     <div>
-      <p class="eyebrow-gold mb-3">Hauptangebot</p>
+      <p class="eyebrow-gold mb-3">Unser Angebot für Sie</p>
       <h2 class="mb-2 text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.15rem]">Ihr kostenloser Fördermittelbericht</h2>
       <p class="mb-5 font-mono text-[0.68rem] text-mist/55">Bericht-Nr. FF-2026-XXX · Vertraulich — nur für den Auftraggeber</p>
       <p class="mb-5 text-[0.98rem] text-mist/85">In 48 Stunden schriftlich:</p>
-      <ul class="grid gap-4">
+      <ul class="mb-8 grid gap-4">
         {points.map((p) => (
           <li class="relative pl-6 text-[0.95rem] leading-relaxed text-mist/85 before:absolute before:left-0 before:font-semibold before:text-gold-soft before:content-['✓']">
             {p}
           </li>
         ))}
       </ul>
+      <a href={withBase('/foerdermittelbericht/')} class="btn-gold">Kostenlosen Bericht anfordern</a>
     </div>
 
     <div class="relative min-h-[420px] sm:min-h-[300px] md:min-h-[420px]">
