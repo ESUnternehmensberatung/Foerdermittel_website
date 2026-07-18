@@ -1,0 +1,37 @@
+---
+const points = [
+  'Zentrale Bundes- und Länderprogramme',
+  'Fördersätze nach Bundesland',
+  '7 häufigste Ablehnungsgründe',
+];
+---
+
+<section class="bg-paper-raised px-6 py-16">
+  <div class="reveal-group mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 md:grid-cols-[0.55fr_1fr]">
+    <div class="mx-auto flex aspect-[3/4] w-full max-w-[280px] flex-col justify-between rounded-sm border border-line-ink bg-ink p-6 shadow-[0_25px_40px_-20px_rgba(18,42,34,0.45)]">
+      <div class="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-wide text-mist/75">
+        <span class="font-semibold text-gold-soft">✓</span> FÖRDERMITTEL-FINDER
+      </div>
+      <div>
+        <span class="mb-2 block font-mono text-[0.65rem] uppercase tracking-[0.12em] text-gold-soft">PDF · Direktdownload</span>
+        <span class="block font-display text-2xl font-semibold leading-tight text-mist">Fördermittel-Kompass 2026</span>
+        <span class="mt-2 block font-mono text-[0.7rem] text-mist/70">Checkliste für Bestandsunternehmen</span>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow-forest mb-3">Kostenloses Freebie</p>
+      <h2 class="mb-3 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Der Fördermittel-Kompass 2026</h2>
+      <p class="mb-6 max-w-[60ch] text-[0.98rem] leading-relaxed text-ash/80">
+        Programme, Fristen, Fördersätze nach Bundesland — sofort als PDF, ohne Formular.
+      </p>
+      <ul class="mb-8 grid gap-2.5">
+        {points.map((p) => (
+          <li class="relative pl-5 text-[0.92rem] text-ash/85 before:absolute before:left-0 before:text-forest before:content-['—']">
+            {p}
+          </li>
+        ))}
+      </ul>
+      <a href="/checkliste-foerdermittel-2026/" class="btn-outline-forest">Jetzt kostenlos herunterladen</a>
+    </div>
+  </div>
+</section>

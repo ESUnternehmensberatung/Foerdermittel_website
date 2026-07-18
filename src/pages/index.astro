@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/sections/SiteHeader.astro';
+import Hero from '../components/sections/Hero.astro';
+import PhotoBand from '../components/sections/PhotoBand.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import Problem from '../components/sections/Problem.astro';
+import Process from '../components/sections/Process.astro';
+import Segments from '../components/sections/Segments.astro';
+import Freebie from '../components/sections/Freebie.astro';
+import ReportCta from '../components/sections/ReportCta.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import About from '../components/sections/About.astro';
+import Knowledge from '../components/sections/Knowledge.astro';
+import Faq from '../components/sections/Faq.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
+import SiteFooter from '../components/sections/SiteFooter.astro';
+---
+
+<Layout
+  title="Fördermittel-Finder — Fördermittelberatung für Bestandsunternehmen"
+  description="Kostenloser Fördermittelbericht in 48 Stunden: Welche der 2.500+ deutschen Förderprogramme zu Ihrem Bestandsunternehmen passen. BAFA-gelistete Beratung von ES | Unternehmensberatung & Prospero."
+  path="/"
+>
+  <SiteHeader />
+  <main>
+    <Hero />
+    <PhotoBand
+      src="/images/office-banner.jpg"
+      caption="Bundesweit aktiv"
+      captionBig="16 Bundesländer, ein Prozess"
+    />
+    <TrustBar />
+    <Problem />
+    <Process />
+    <Segments />
+    <Freebie />
+    <ReportCta />
+    <Testimonials />
+    <About />
+    <Knowledge />
+    <Faq />
+    <FinalCta />
+  </main>
+  <SiteFooter />
+</Layout>

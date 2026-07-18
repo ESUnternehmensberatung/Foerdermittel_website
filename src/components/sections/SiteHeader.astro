@@ -1,0 +1,24 @@
+---
+const nav = [
+  { label: 'Für Bestandsunternehmen', href: '/foerdermittel-bestandsunternehmen/' },
+  { label: 'Ablauf', href: '/#ablauf' },
+  { label: 'Wissen', href: '/wissen/' },
+  { label: 'Über uns', href: '/ueber-uns/' },
+];
+---
+
+<header class="sticky top-0 z-50 flex items-center justify-between gap-6 border-b border-line-ink/60 bg-ink/95 px-6 py-4 backdrop-blur">
+  <a href="/" class="font-display text-lg font-semibold tracking-tight text-mist">
+    Fördermittel<em class="not-italic text-gold-soft">-Finder</em>
+  </a>
+  <nav class="hidden gap-6 font-body text-sm text-mist md:flex">
+    {nav.map((item) => (
+      <a href={item.href} class="border-b border-transparent pb-0.5 opacity-90 transition-colors hover:border-gold hover:opacity-100">
+        {item.label}
+      </a>
+    ))}
+  </nav>
+  <a href="/foerdermittelbericht/" class="btn-gold whitespace-nowrap !px-4 !py-2.5 text-[0.84rem]">
+    Fördermittelbericht
+  </a>
+</header>

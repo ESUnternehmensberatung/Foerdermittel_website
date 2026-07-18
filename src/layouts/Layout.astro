@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+}
+
+const { title, description, path = '/' } = Astro.props;
+const canonical = new URL(path, Astro.site);
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plexsans-var.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'Fördermittel-Finder',
+      description: 'Fördermittelberatung für Bestandsunternehmen — eine Kooperation von ES | Unternehmensberatung und Prospero Beratungsgesellschaft mbH.',
+      url: 'https://www.foerdermittel-finder.de',
+      areaServed: 'DE',
+      slogan: 'Fördermittel, die zu Ihrem Unternehmen passen.',
+    })} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      const groups = document.querySelectorAll<HTMLElement>('.reveal-group');
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const kids = entry.target.children.length ? Array.from(entry.target.children) : [entry.target];
+            kids.forEach((el, i) => {
+              (el as HTMLElement).style.transitionDelay = `${i * 70}ms`;
+              el.classList.add('reveal', 'is-visible');
+            });
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.15 }
+      );
+      groups.forEach((g) => {
+        g.classList.add('reveal');
+        Array.from(g.children).forEach((el) => el.classList.add('reveal'));
+        io.observe(g);
+      });
+
+      // Safety net: tools that capture the full page without genuinely
+      // scrolling it (link-preview bots, some screenshot/PDF exporters)
+      // never fire IntersectionObserver for below-the-fold content, which
+      // would otherwise stay permanently at opacity:0. Force it visible
+      // shortly after load regardless of scroll position.
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => {
+            el.classList.add('is-visible');
+          });
+        }, 500);
+      });
+
+      const counters = document.querySelectorAll<HTMLElement>('.stat-count');
+      const cio = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.count || '0', 10);
+            const suffix = el.dataset.suffix || '';
+            let start: number | null = null;
+            const dur = 1100;
+            function step(ts: number) {
+              if (start === null) start = ts;
+              const p = Math.min((ts - start) / dur, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(eased * target).toLocaleString('de-DE') + suffix;
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            cio.unobserve(el);
+          }
+        },
+        { threshold: 0.6 }
+      );
+      counters.forEach((c) => cio.observe(c));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+const steps = [
+  { n: 'SCHRITT 1', title: 'Kurzcheck', text: '5 Minuten, Branche & Vorhaben.' },
+  { n: 'SCHRITT 2', title: 'Fördermittelbericht', text: 'Passende Programme & Fördersätze — kostenlos.' },
+  { n: 'SCHRITT 3', title: 'BAFA-Erstberatung', text: 'Mit Prospero, i. d. R. 50–80 % Zuschuss.' },
+  { n: 'SCHRITT 4', title: 'Antrag & Umsetzung', text: 'Begleitung bis zur Bewilligung.' },
+];
+---
+
+<section id="ablauf" class="bg-ink px-6 py-16">
+  <div class="mx-auto max-w-[1120px]">
+    <p class="eyebrow-gold mb-3">So arbeiten wir</p>
+    <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.15rem]">
+      Vier Schritte bis zum bewilligten Antrag
+    </h2>
+    <div class="reveal-group grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s, i) => (
+        <div>
+          <div class="mb-4 flex items-center">
+            <span class="h-3 w-3 flex-shrink-0 rounded-full bg-gold shadow-[0_0_0_5px_rgba(198,138,46,0.2)]"></span>
+            {i < steps.length - 1 && (
+              <span class="ml-2 h-0.5 flex-1 bg-gradient-to-r from-gold to-gold/25"></span>
+            )}
+          </div>
+          <p class="mb-1.5 font-mono text-[0.72rem] text-gold-soft">{s.n}</p>
+          <h3 class="mb-1.5 font-display text-[1.05rem] font-semibold text-mist">{s.title}</h3>
+          <p class="text-[0.86rem] leading-relaxed text-mist/75">{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

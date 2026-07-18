@@ -1,0 +1,28 @@
+---
+const points = [
+  { n: '01', title: 'Unübersichtlich', text: '2.500+ Programme, ständig wechselnde Zuständigkeiten.' },
+  { n: '02', title: 'Zeitaufwand', text: 'Recherche bindet Kapazität, die im Tagesgeschäft fehlt.' },
+  { n: '03', title: 'Formfehler', text: 'Antrag vor Beratungsbeginn — häufigster Ablehnungsgrund.' },
+];
+---
+
+<section class="bg-paper px-6 py-16">
+  <div class="mx-auto max-w-[1120px]">
+    <p class="eyebrow-forest mb-3">Das Problem</p>
+    <h2 class="mb-3 max-w-[26ch] text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">
+      Über 2.500 Förderprogramme. Die wenigsten Unternehmen kennen mehr als eine Handvoll.
+    </h2>
+    <p class="mb-9 max-w-[60ch] text-[0.98rem] leading-relaxed text-ash/80">
+      Bund, Länder und EU fördern Digitalisierung, Nachhaltigkeit, Nachfolge und Weiterbildung — doch Zuständigkeiten, Fristen und Formvorschriften wechseln jährlich.
+    </p>
+    <div class="reveal-group grid grid-cols-1 gap-5 sm:grid-cols-3">
+      {points.map((p) => (
+        <div class="card-hover rounded-sm border border-line-paper bg-white p-6">
+          <p class="mb-2 font-mono text-xs font-semibold text-gold">{p.n}</p>
+          <h3 class="mb-1.5 font-display text-lg font-semibold">{p.title}</h3>
+          <p class="text-sm leading-relaxed text-ash/78">{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

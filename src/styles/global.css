@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-var.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/plexsans-var.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/plexmono-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/plexmono-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ash font-body antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center rounded-sm bg-gold px-6 py-3 font-body text-sm font-semibold text-ink transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-10px_rgba(198,138,46,0.55)];
+  }
+  .btn-outline-mist {
+    @apply inline-flex items-center justify-center rounded-sm border border-line-ink px-6 py-3 font-body text-sm font-semibold text-mist transition-all duration-300 ease-out hover:-translate-y-0.5 hover:opacity-85;
+  }
+  .btn-outline-forest {
+    @apply inline-flex items-center justify-center rounded-sm border border-forest px-6 py-3 font-body text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:opacity-85;
+  }
+  .eyebrow-gold {
+    @apply font-mono text-[0.72rem] uppercase tracking-[0.14em] text-gold-soft;
+  }
+  .eyebrow-forest {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.12em] text-forest;
+  }
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:border-forest hover:shadow-[0_18px_32px_-20px_rgba(18,42,34,0.35)];
+  }
+  .glass-card {
+    @apply rounded-sm border border-white/25 bg-paper/95 p-6 backdrop-blur;
+  }
+  .status-dot {
+    @apply inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.06em] text-ash/75;
+  }
+  .status-dot::before {
+    content: '';
+    @apply h-1.5 w-1.5 rounded-full bg-instrument-zuschuss;
+  }
+  .pill {
+    @apply rounded-sm px-2 py-1 font-mono text-[0.6rem] uppercase tracking-[0.06em] text-white;
+  }
+
+  /* Scroll-reveal used by section components; JS toggles .is-visible */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s cubic-bezier(.16,.8,.24,1), transform 0.7s cubic-bezier(.16,.8,.24,1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

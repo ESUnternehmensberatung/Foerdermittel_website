@@ -1,0 +1,44 @@
+---
+const faqs = [
+  {
+    q: 'Was gilt als Bestandsunternehmen bei Fördermitteln?',
+    a: 'Betriebe, die seit mindestens zwei bis drei Jahren am Markt sind — mit eigenen Programmen und Fördersätzen, getrennt von der Gründungsförderung.',
+  },
+  {
+    q: 'Wie hoch ist die BAFA-Förderung 2026 für Bestandsunternehmen?',
+    a: '50–80 % der Beratungskosten, je nach Region — bei 3.500 € Bemessungsgrundlage bis zu 2.800 € Zuschuss.',
+  },
+  {
+    q: 'Was kostet der Fördermittelbericht?',
+    a: 'Nichts. Der Bericht ist kostenlos und unverbindlich, ganz ohne Verkaufsdruck.',
+  },
+];
+---
+
+<section class="bg-paper px-6 py-16">
+  <div class="mx-auto max-w-[1120px]">
+    <p class="eyebrow-forest mb-3">FAQ</p>
+    <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Häufige Fragen</h2>
+    <div class="reveal-group grid gap-2.5">
+      {faqs.map((f) => (
+        <details class="group rounded-sm border border-line-paper bg-white open:shadow-sm">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-display text-base marker:content-none">
+            <span>{f.q}</span>
+            <span class="font-mono text-forest transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-[0.9rem] leading-relaxed text-ash/80">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  })} />
+</section>

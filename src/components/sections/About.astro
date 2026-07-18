@@ -1,0 +1,28 @@
+---
+const people = [
+  { initials: 'ES', name: 'Eduard Schmal', role: 'ES | Unternehmensberatung', text: 'Erstkontakt & Fördermittel-Check — inhaltlich verantwortlich für diese Seite.' },
+  { initials: 'P', name: 'Beratungsteam Prospero', role: 'Prospero Beratungsgesellschaft mbH, Hamburg', text: 'BAFA-gelistet seit 1997 — Durchführung der geförderten Erstberatung.' },
+];
+---
+
+<section class="bg-paper px-6 py-16">
+  <div class="mx-auto max-w-[1120px]">
+    <p class="eyebrow-forest mb-3">Kooperation</p>
+    <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Zwei Berater, ein Prozess</h2>
+    <div class="reveal-group grid grid-cols-1 gap-6 md:grid-cols-2">
+      {people.map((p) => (
+        <div class="card-hover flex items-start gap-4 rounded-sm border border-line-paper bg-white p-6">
+          <div class="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-sm bg-gradient-to-br from-forest to-ink">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(231,192,119,0.55),transparent_55%)]"></div>
+            <span class="absolute bottom-1.5 right-2 z-10 font-display text-base font-semibold text-paper">{p.initials}</span>
+          </div>
+          <div>
+            <h4 class="font-display text-base font-semibold">{p.name}</h4>
+            <p class="mb-2 font-mono text-xs uppercase tracking-wide text-forest">{p.role}</p>
+            <p class="text-[0.86rem] leading-relaxed text-ash/78">{p.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

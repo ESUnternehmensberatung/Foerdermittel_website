@@ -1,0 +1,26 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+  captionBig?: string;
+  height?: string;
+}
+const { src, alt = '', caption, captionBig, height = 'h-[360px]' } = Astro.props;
+---
+
+<div class={`relative ${height} overflow-hidden`}>
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    class="h-full w-full object-cover [filter:grayscale(20%)_contrast(1.08)_brightness(0.85)_saturate(0.9)]"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/45 to-ink/15"></div>
+  {caption && (
+    <p class="absolute bottom-6 left-6 z-10 font-mono text-[0.72rem] tracking-wide text-gold-soft">
+      {caption}
+      {captionBig && <b class="mt-1 block font-display text-2xl font-semibold text-mist">{captionBig}</b>}
+    </p>
+  )}
+</div>

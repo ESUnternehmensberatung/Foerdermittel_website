@@ -1,0 +1,62 @@
+---
+const points = [
+  'Welche Programme zu Ihrem Vorhaben passen',
+  'Fördersatz und maximale Fördersumme',
+  'Terminvorschlag für die BAFA-Erstberatung',
+];
+
+const cards = [
+  { pill: 'Zuschuss', pillClass: 'bg-instrument-zuschuss', title: 'BAFA — Unternehmerisches Know-how', erfolg: 'Hoch', a: 'Fördersatz 50–80 %', b: 'bis 2.800 €' },
+  { pill: 'Kredit', pillClass: 'bg-instrument-kredit', title: 'ISB-/KfW-Förderkredit KMU', erfolg: 'Mittel bis Hoch', a: 'Zinsverbilligt', b: 'bis 2 Mio. €' },
+  { pill: 'Bürgschaft', pillClass: 'bg-instrument-buergschaft', title: 'Bürgschaftsbank — Bürgschaft Classic', erfolg: 'Mittel bis Hoch', a: 'Sicherheitenersatz', b: 'bis 80 %' },
+];
+---
+
+<section class="bg-ink px-6 py-16">
+  <div class="reveal-group mx-auto grid max-w-[1120px] grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr]">
+    <div>
+      <p class="eyebrow-gold mb-3">Hauptangebot</p>
+      <h2 class="mb-2 text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.15rem]">Ihr kostenloser Fördermittelbericht</h2>
+      <p class="mb-5 font-mono text-[0.68rem] text-mist/55">Bericht-Nr. FF-2026-XXX · Vertraulich — nur für den Auftraggeber</p>
+      <p class="mb-5 text-[0.98rem] text-mist/85">In 48 Stunden schriftlich:</p>
+      <ul class="grid gap-4">
+        {points.map((p) => (
+          <li class="relative pl-6 text-[0.95rem] leading-relaxed text-mist/85 before:absolute before:left-0 before:font-semibold before:text-gold-soft before:content-['✓']">
+            {p}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="relative min-h-[420px] sm:min-h-[300px] md:min-h-[420px]">
+      <div class="relative h-full w-full">
+        {cards.map((c, i) => (
+          <div
+            class="absolute animate-[float_7s_ease-in-out_infinite] rounded-md border border-black/5 bg-paper p-5 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)] motion-reduce:animate-none"
+            style={{
+              top: `${i * 34}%`,
+              left: `${i * 8}%`,
+              width: `calc(94% - ${i * 8}%)`,
+              zIndex: 3 - i,
+              opacity: 1 - i * 0.06,
+              animationDelay: `${i * -2.3}s`,
+            }}
+          >
+            <div class="mb-2.5 flex items-center justify-between gap-2">
+              <span class="status-dot">aktiv</span>
+              <span class={`pill ${c.pillClass}`}>{c.pill}</span>
+            </div>
+            <p class="mb-1.5 font-display text-[1.03rem] font-semibold leading-snug text-ash">{c.title}</p>
+            <p class="mb-2.5 font-mono text-[0.68rem] text-forest">
+              Erfolgsaussicht: <b>{c.erfolg}</b>
+            </p>
+            <div class="flex justify-between border-t border-line-paper pt-2 font-mono text-[0.72rem] text-ash/70">
+              <span>{c.a}</span>
+              <span>{c.b}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

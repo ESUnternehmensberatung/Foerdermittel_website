@@ -1,0 +1,26 @@
+---
+const stats = [
+  { count: 2500, suffix: '+', label: 'geprüfte Förderprogramme' },
+  { count: 48, suffix: ' Std.', label: 'bis zum Fördermittelbericht' },
+  { count: 80, suffix: '%', label: 'maximaler BAFA-Fördersatz' },
+];
+---
+
+<div class="flex flex-wrap items-center justify-between gap-6 border-b border-line-paper bg-paper px-6 py-7">
+  <div class="flex flex-wrap gap-10">
+    {stats.map((s) => (
+      <div>
+        <b class="block font-mono text-[1.3rem] font-semibold tabular-nums text-forest">
+          <span class="stat-count" data-count={s.count} data-suffix={s.suffix}>{s.count.toLocaleString('de-DE')}{s.suffix}</span>
+        </b>
+        <span class="text-[0.78rem] text-ash/70">{s.label}</span>
+      </div>
+    ))}
+  </div>
+  <div class="flex items-center gap-4 font-mono text-[0.72rem] text-ash/75">
+    <span class="rounded-sm border border-forest px-2.5 py-1 text-forest">BAFA-gelistet</span>
+    <span>Prospero Hamburg</span>
+    <span>·</span>
+    <span>ES | Unternehmensberatung</span>
+  </div>
+</div>
