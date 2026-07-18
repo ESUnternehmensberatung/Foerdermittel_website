@@ -103,7 +103,7 @@ const fontFaceCss = `
             const target = parseInt(el.dataset.count || '0', 10);
             const suffix = el.dataset.suffix || '';
             let start: number | null = null;
-            const dur = 1100;
+            const dur = 2200;
             function step(ts: number) {
               if (start === null) start = ts;
               const p = Math.min((ts - start) / dur, 1);
