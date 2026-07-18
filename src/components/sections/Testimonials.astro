@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const items = [
   { quote: 'Der Bericht zeigte in zwei Tagen, was Monate Eigenrecherche nicht gebracht hätten.', who: 'Geschäftsführung, Maschinenbau,', stat: '42.000 €', rest: 'Fördervolumen gesichert' },
   { quote: 'Die BAFA-Erstberatung war unkompliziert organisiert — inklusive fristgerechtem Antrag.', who: 'Inhaberin, Handwerksbetrieb,', stat: '18 Monate', rest: 'Bestandsunternehmen' },
@@ -7,7 +9,7 @@ const items = [
 
 <section class="relative px-6 py-16">
   <img
-    src="/images/meeting-atmos.jpg"
+    src={withBase('/images/meeting-atmos.jpg')}
     alt=""
     loading="lazy"
     class="absolute inset-0 h-full w-full object-cover [filter:grayscale(25%)_contrast(1.1)_brightness(0.55)_saturate(0.85)]"

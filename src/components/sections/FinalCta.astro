@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/base';
 ---
 
 <section class="bg-ink px-6 py-20 text-center">
@@ -6,5 +7,5 @@
     Klarheit über Ihre Fördermöglichkeiten — in 48 Stunden.
   </h2>
   <p class="mx-auto mb-8 max-w-[52ch] text-mist/80">Kostenlos, unverbindlich, ohne Verkaufsdruck.</p>
-  <a href="/foerdermittelbericht/" class="btn-gold">Kostenlosen Fördermittelbericht anfordern</a>
+  <a href={withBase('/foerdermittelbericht/')} class="btn-gold">Kostenlosen Fördermittelbericht anfordern</a>
 </section>

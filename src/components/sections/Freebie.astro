@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const points = [
   'Zentrale Bundes- und Länderprogramme',
   'Fördersätze nach Bundesland',
@@ -31,7 +33,7 @@ const points = [
           </li>
         ))}
       </ul>
-      <a href="/checkliste-foerdermittel-2026/" class="btn-outline-forest">Jetzt kostenlos herunterladen</a>
+      <a href={withBase('/checkliste-foerdermittel-2026/')} class="btn-outline-forest">Jetzt kostenlos herunterladen</a>
     </div>
   </div>
 </section>

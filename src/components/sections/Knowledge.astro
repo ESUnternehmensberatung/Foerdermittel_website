@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const articles = [
   { tag: 'Pillar-Guide', title: 'Fördermittel für Bestandsunternehmen 2026', text: 'Der vollständige Leitfaden.', href: '/foerdermittel-bestandsunternehmen/' },
   { tag: 'BAFA', title: 'BAFA-Förderung im Detail', text: 'Voraussetzungen & Antragsprozess.', href: '/bafa-foerderung-unternehmensberatung/' },
@@ -12,7 +14,7 @@ const articles = [
     <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Fördermittel verständlich erklärt</h2>
     <div class="reveal-group grid grid-cols-1 gap-5 sm:grid-cols-3">
       {articles.map((a) => (
-        <a href={a.href} class="card-hover block overflow-hidden rounded-sm border border-line-paper bg-white">
+        <a href={withBase(a.href)} class="card-hover block overflow-hidden rounded-sm border border-line-paper bg-white">
           <div class="h-[90px] bg-gradient-to-br from-forest to-ink"></div>
           <div class="px-5 py-5">
             <p class="mb-2 font-mono text-[0.66rem] uppercase tracking-wide text-forest">{a.tag}</p>

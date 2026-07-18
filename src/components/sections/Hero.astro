@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/base';
 ---
 
 <section class="relative min-h-[560px] overflow-hidden">
@@ -7,10 +8,10 @@
     loop
     muted
     playsinline
-    poster="/images/hero-poster.jpg"
+    poster={withBase('/images/hero-poster.jpg')}
     class="absolute inset-0 h-full w-full object-cover [filter:grayscale(12%)_contrast(1.05)_saturate(0.88)]"
   >
-    <source src="/video/hero-loop.mp4" type="video/mp4" />
+    <source src={withBase('/video/hero-loop.mp4')} type="video/mp4" />
   </video>
   <div class="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/78 to-ink/95"></div>
 
@@ -23,8 +24,8 @@
       Wir zeigen schwarz auf weiß, welche der 2.500+ deutschen Förderprogramme zu Ihrem Vorhaben passen — und begleiten Sie bis zum bewilligten Antrag.
     </p>
     <div class="flex flex-wrap gap-4">
-      <a href="/foerdermittelbericht/" class="btn-gold">Kostenlosen Bericht anfordern</a>
-      <a href="/checkliste-foerdermittel-2026/" class="btn-outline-mist">Kompass laden (PDF)</a>
+      <a href={withBase('/foerdermittelbericht/')} class="btn-gold">Kostenlosen Bericht anfordern</a>
+      <a href={withBase('/checkliste-foerdermittel-2026/')} class="btn-outline-mist">Kompass laden (PDF)</a>
     </div>
     <div class="mt-9 flex flex-wrap gap-6 border-t border-mist/20 pt-6 font-mono text-[0.72rem] text-mist/75">
       <span class="flex items-center gap-1.5 before:h-[5px] before:w-[5px] before:rounded-full before:bg-gold-soft">2.500+ geprüfte Programme</span>
