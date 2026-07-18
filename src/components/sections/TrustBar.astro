@@ -1,12 +1,9 @@
 ---
-// Quelle für "2.500+": Förderdatenbank des Bundes (foerderdatenbank.de),
-// die Förderprogramme von Bund, Ländern und EU listet. Der exakte Wert
-// schwankt je nach Sekundärquelle zwischen "über 1.000" und "über 3.500" —
-// vor Launch direkt auf foerderdatenbank.de gegenprüfen (siehe Notiz an
-// Eduard Schmal im Chat), da automatisierter Zugriff dort blockiert ist.
+const PROSPERO_FOUNDED = 1997;
+const yearsExperience = new Date().getFullYear() - PROSPERO_FOUNDED;
+
 const stats = [
-  { count: 2500, suffix: '+', label: 'Förderprogramme in Deutschland (Bund, Länder, EU)' },
-  { count: 29, suffix: '', label: 'Jahre Erfahrung' },
+  { count: yearsExperience, suffix: '', label: 'Jahre Erfahrung' },
   { count: 500, suffix: '+', label: 'durchgeführte Beratungen' },
   { count: 2, suffix: '', label: 'Beratungshäuser in Kooperation' },
 ];
