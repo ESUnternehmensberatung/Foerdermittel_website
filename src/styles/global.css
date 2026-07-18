@@ -69,6 +69,11 @@
   .pill {
     @apply rounded-sm px-2 py-1 font-mono text-[0.6rem] uppercase tracking-[0.06em] text-white;
   }
+  /* Definition callouts for AEO-relevant terms (KMU, Bestandsunternehmen, …) —
+     reused across the homepage and later the content/pillar pages. */
+  .def-box {
+    @apply rounded-sm border border-line-paper bg-white p-6;
+  }
 
   /* Scroll-reveal used by section components; JS toggles .is-visible */
   .reveal {

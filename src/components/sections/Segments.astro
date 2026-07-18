@@ -6,14 +6,41 @@ const segments = [
   { title: 'Weiterbildung', text: 'Qualifizierung im Team' },
   { title: 'Wachstum', text: 'Investition & Markt' },
 ];
+
+const kmuClasses = [
+  { label: 'Kleinstunternehmen', beschaeftigte: '< 10', umsatz: '≤ 2 Mio. €' },
+  { label: 'Kleine Unternehmen', beschaeftigte: '< 50', umsatz: '≤ 10 Mio. €' },
+  { label: 'Mittlere Unternehmen', beschaeftigte: '< 250', umsatz: '≤ 50 Mio. €' },
+];
 ---
 
 <section class="bg-paper px-6 py-16">
   <div class="mx-auto max-w-[1120px]">
     <p class="eyebrow-forest mb-3">Für wen</p>
-    <h2 class="mb-9 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">
-      Passend für jeden Anlass im Bestandsunternehmen
+    <h2 class="mb-5 max-w-[30ch] text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">
+      Gemacht für den Mittelstand
     </h2>
+    <p class="mb-9 max-w-[68ch] text-[0.98rem] leading-relaxed text-ash/80">
+      Prospero ist ein inhabergeführtes Beratungsunternehmen und seit der Gründung 1997 kompetenter, zuverlässiger Ansprechpartner für Unternehmer und Selbständige im Mittelstand — spezialisiert auf mehrere Leistungsfelder, um in vielen Unternehmenssituationen umfassend beraten zu können. Fördermittel-Finder bündelt diese Erfahrung für Bestandsunternehmen, die als kleine oder mittlere Unternehmen (KMU) gelten — genau die Größenordnung, in der die BAFA-geförderte Unternehmensberatung greift.
+    </p>
+
+    <div class="def-box reveal-group mb-9">
+      <p class="eyebrow-forest mb-2">Definition</p>
+      <p class="mb-5 max-w-[68ch] text-[0.94rem] leading-relaxed text-ash/85">
+        Als kleine und mittlere Unternehmen (KMU) gelten laut EU-Definition (Anhang I AGVO) Betriebe mit weniger als 250 Beschäftigten und höchstens 50 Mio. € Jahresumsatz oder 43 Mio. € Bilanzsumme. Darunter unterscheidet man drei Größenklassen:
+      </p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {kmuClasses.map((k) => (
+          <div class="rounded-sm border border-line-paper px-4 py-3">
+            <p class="mb-1 font-display text-sm font-semibold">{k.label}</p>
+            <p class="font-mono text-[0.76rem] text-ash/70">{k.beschaeftigte} Beschäftigte</p>
+            <p class="font-mono text-[0.76rem] text-ash/70">Umsatz {k.umsatz}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="eyebrow-forest mb-4">Typische Anlässe</p>
     <div class="reveal-group grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {segments.map((s) => (
         <div class="card-hover rounded-sm border border-line-paper bg-white p-5">
