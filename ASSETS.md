@@ -4,8 +4,8 @@ Bilder/Video in `public/images/` und `public/video/` sind lizenzfreie Pexels-Auf
 
 | Datei | Quelle | Verwendung |
 |---|---|---|
-| `video/hero-loop.mp4` | KI-generiert (Google VEO 3), 5 Szenen, Trust-Seal-Overlay — siehe unten | Hero-Hintergrundvideo |
-| `images/hero-poster.jpg` | Standbild aus obigem Video (Dachdecker-Szene, Rathausdächer im Hintergrund) | `poster`-Attribut fürs Hero-Video |
+| `video/hero-loop.mp4` | KI-generiert (Google VEO 3), 5 Szenen, Box-Blur auf Wasserzeichen — siehe unten | Hero-Hintergrundvideo |
+| `images/hero-poster.jpg` | Standbild aus obigem Video (Malermeister-Szene) | `poster`-Attribut fürs Hero-Video |
 | `images/office-banner.jpg` | Pexels-Foto 9847049 (zugeschnitten auf die Fassade) | Full-bleed Foto-Band |
 | `images/meeting-atmos.jpg` | Pexels-Foto 3183183 | Hintergrund Ergebnisse/Referenzen |
 | `images/documents.jpg` | Pexels-Foto 3184287 | Foto-Akzent Content-Seiten |
@@ -23,8 +23,10 @@ Malermeister → Bäckermeisterin → Dachdecker → Immobilienmaklerin → Bren
 - Alle fünf verwendeten Clips enthielten ein kleines Sternchen-Wasserzeichen (vermutlich Gemini/VEO-Kennzeichnung), das den Eindruck "KI-generiert" sofort verraten hätte. Das Fern-Overlay/CSS-Filter des Hero-Bereichs allein reichte nicht aus, um es zuverlässig zu kaschieren (Testkomposit zeigte es noch schwach durchscheinend). Ein `delogo`-Filter erzeugte sichtbare Schlieren-Artefakte — stattdessen zunächst per weichem Box-Blur (Crop+Blur+Overlay) an der jeweiligen Position pro Szene unauffällig entfernt.
 - Marken-Grading (leichte Entsättigung, Grün-/Gold-Farbstich) angewendet, Clips mit Cross-Fades aneinandergeschnitten.
 
-### Update (Stand 2026-07-22): Box-Blur durch Trust-Siegel ersetzt
+### Update (Stand 2026-07-22): Trust-Siegel als HTML-Overlay statt ins Video gebacken
 
-Der Box-Blur blieb auf hellem Hintergrund weiterhin sichtbar (z. B. Himmel in der Dachdecker-Szene) — im echten Rendering auffälliger als im ursprünglichen Testkomposit. Ersetzt durch eine fixe, deckende Overlay-Grafik: `src/assets/trust-seal.svg` (dunkelgrünes Rund-Siegel, Goldrand, „FÖRDERMITTEL · FINDER" / „BAFA-GELISTETE BERATUNG" als Umlauftext, Haken-Symbol, „KOSTENLOS & UNVERBINDLICH"), fest positioniert bei x=1020,y=455 (Größe 210×210 in 1280×720) über die gesamte Videolänge — an die Wasserzeichen-Position angelehnt, die sich als über alle 5 Szenen hinweg fix herausstellte. Deckt das Wasserzeichen zuverlässig ab und liest sich als Trust-Element, nicht als Korrektur — angelehnt an das Gütesiegel auf reamotion.com.
+Erster Versuch: das Siegel direkt ins Video gebacken (deckend, 210×210 bei x=1020,y=455), um den Box-Blur zu ersetzen. Optisch aber deutlich größer als gewünscht (Vorbild: das kleine, dezente Gütesiegel auf reamotion.com). Stattdessen jetzt: Video wieder auf die Box-Blur-Version zurückgesetzt, das Siegel liegt als kleines, eigenständiges `<svg>` in `Hero.astro` (identischer Code wie `src/assets/trust-seal.svg`, dort als Referenz für Wiederverwendung an anderer Stelle), unten rechts, ca. 64–80px groß.
+
+Geprüft, ob das jetzt kleinere Siegel den darunterliegenden Box-Blur noch zuverlässig abdeckt: Bei genauer Positionsanalyse deckt es den Blur-Bereich nicht vollständig ab (das Siegel sitzt in der äußersten Ecke, der Blur-Fleck etwas weiter mittig). In der Praxis aber unauffällig, da der dunkle Ink-Verlauf über dem gesamten Hero (`from-ink/55 via-ink/78 to-ink/95`) den Kontrast schon so weit dämpft, dass der Fleck selbst in der hellsten Szene (Dachdecker/Himmel) nicht mehr erkennbar ist — mit gerendertem Vergleichsbild verifiziert.
 
 **Bei künftigem KI-generiertem Videomaterial generell prüfen:** (1) sichtbare Wasserzeichen der Generierungs-Tools, (2) halluzinierte Fremdlogos auf Kleidung/Gebäuden/Fahrzeugen.
