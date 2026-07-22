@@ -6,11 +6,11 @@ const cols = [
     { label: 'Für Bestandsunternehmen', href: '/foerdermittel-bestandsunternehmen/' },
     { label: 'Ablauf', href: '/#ablauf' },
     { label: 'Wissen', href: '/wissen/' },
-    { label: 'Über uns', href: '/ueber-uns/' },
+    { label: 'Über uns', href: '/#kooperation' },
   ]},
   { title: 'Standorte', links: [
-    { label: 'Prospero — Hamburg', href: '/ueber-uns/' },
-    { label: 'ES | Unternehmensberatung — Eyendorf/Lüneburg', href: '/ueber-uns/' },
+    { label: 'Hamburg', href: 'https://www.prospero.hamburg/', external: true },
+    { label: 'Eyendorf/Lüneburg', href: 'https://schmal-unternehmensberatung.de/', external: true },
   ]},
   { title: 'Rechtliches', links: [
     { label: 'Impressum', href: '/impressum/' },
@@ -30,14 +30,20 @@ const cols = [
           <h5 class="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.1em] opacity-60">{col.title}</h5>
           <ul class="grid gap-2 text-[0.85rem] opacity-85">
             {col.links.map((l) => (
-              <li><a href={withBase(l.href)} class="hover:text-gold-soft">{l.label}</a></li>
+              <li>
+                {l.external ? (
+                  <a href={l.href} target="_blank" rel="noopener" class="hover:text-gold-soft">{l.label}</a>
+                ) : (
+                  <a href={withBase(l.href)} class="hover:text-gold-soft">{l.label}</a>
+                )}
+              </li>
             ))}
           </ul>
         </div>
       ))}
     </div>
     <div class="flex flex-wrap justify-between gap-2 pt-5 text-[0.78rem] opacity-60">
-      <span>Fördermittel-Finder — eine Kooperation von ES | Unternehmensberatung &amp; Prospero</span>
+      <span>Fördermittel-Finder — eine Kooperation von ES | Unternehmensberatung &amp; Prospero Beratungsgesellschaft mbH</span>
       <span>© {new Date().getFullYear()}</span>
     </div>
   </div>
