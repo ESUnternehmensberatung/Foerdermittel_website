@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
   <defs>
     <path id="topArc" d="M 45,150 A 105,105 0 1,1 255,150" fill="none"/>
-    <path id="bottomArc" d="M 255,150 A 105,105 0 1,1 45,150" fill="none"/>
+    <path id="bottomArc" d="M 45,150 A 105,105 0 1,0 255,150" fill="none"/>
     <radialGradient id="bg" cx="50%" cy="42%" r="70%">
       <stop offset="0%" stop-color="#1B3A2F"/>
       <stop offset="100%" stop-color="#122A22"/>
