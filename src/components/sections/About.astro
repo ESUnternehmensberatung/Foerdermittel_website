@@ -1,28 +1,32 @@
 ---
 const people = [
-  { initials: 'ES', name: 'Eduard Schmal', role: 'ES | Unternehmensberatung', text: 'Erstkontakt & Fördermittel-Check — inhaltlich verantwortlich für diese Seite.' },
-  { initials: 'P', name: 'Beratungsteam Prospero', role: 'Prospero Beratungsgesellschaft mbH, Hamburg', text: 'Gegründet 1997, BAFA-gelistet — Durchführung der geförderten Erstberatung.' },
+  {
+    name: 'Beratungsteam Prospero',
+    role: 'Prospero Beratungsgesellschaft mbH',
+    text: 'Berater und Partner für den Mittelstand seit 1997: ein inhabergeführtes, BAFA-gelistetes Beratungsunternehmen, spezialisiert auf mehrere Leistungsfelder — für umfassende Beratung in vielen Unternehmenssituationen.',
+    href: 'https://www.prospero.hamburg/',
+  },
+  {
+    name: 'Eduard Schmal',
+    role: 'ES | Unternehmensberatung',
+    text: 'Ihr Sparringspartner für Weiterentwicklung: ganzheitliche Unternehmensberatung — modular, fokussiert und auf Ihre Situation zugeschnitten. Strukturen schaffen, Prozesse vereinfachen, Entscheidungen auf belastbare Zahlen stützen. Nicht theoretisch, sondern alltagstauglich.',
+    href: 'https://schmal-unternehmensberatung.de/',
+  },
 ];
 ---
 
 <section id="kooperation" class="scroll-mt-24 bg-paper px-6 py-16">
   <div class="mx-auto max-w-[1120px]">
-    <p class="eyebrow-forest mb-3">Kooperation</p>
-    <h2 class="mb-2 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Mehrere Berater. Zwei Beratungshäuser. Ein Ziel.</h2>
+    <p class="eyebrow-forest mb-3">Über uns</p>
+    <h2 class="mb-2 text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">Zwei Beratungshäuser. Ein Ziel.</h2>
     <p class="mb-9 max-w-[62ch] text-[0.98rem] leading-relaxed text-ash/80">Den Mittelstand mit passgenauer Förderung voranbringen.</p>
     <div class="reveal-group grid grid-cols-1 gap-6 md:grid-cols-2">
       {people.map((p) => (
-        <div class="card-hover flex items-start gap-4 rounded-sm border border-line-paper bg-white p-6">
-          <div class="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-sm bg-gradient-to-br from-forest to-ink">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(231,192,119,0.55),transparent_55%)]"></div>
-            <span class="absolute bottom-1.5 right-2 z-10 font-display text-base font-semibold text-paper">{p.initials}</span>
-          </div>
-          <div>
-            <h4 class="font-display text-base font-semibold">{p.name}</h4>
-            <p class="mb-2 font-mono text-xs uppercase tracking-wide text-forest">{p.role}</p>
-            <p class="text-[0.86rem] leading-relaxed text-ash/78">{p.text}</p>
-          </div>
-        </div>
+        <a href={p.href} target="_blank" rel="noopener" class="card-hover block rounded-sm border border-line-paper bg-white p-6">
+          <h4 class="font-display text-base font-semibold">{p.name}</h4>
+          <p class="mb-2 font-mono text-xs uppercase tracking-wide text-forest">{p.role}</p>
+          <p class="text-[0.86rem] leading-relaxed text-ash/78">{p.text}</p>
+        </a>
       ))}
     </div>
   </div>
