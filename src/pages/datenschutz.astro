@@ -4,21 +4,13 @@ import SiteHeader from '../components/sections/SiteHeader.astro';
 import SiteFooter from '../components/sections/SiteFooter.astro';
 
 const rights = [
-  { t: 'Auskunftsrecht', d: 'Bestätigung, ob und welche Daten wir über Sie verarbeiten, sowie Kopie dieser Daten.' },
-  { t: 'Recht auf Berichtigung', d: 'Vervollständigung unvollständiger oder Korrektur unrichtiger Daten.' },
-  { t: 'Recht auf Löschung', d: 'Löschung Ihrer Daten, soweit keine gesetzliche Aufbewahrungspflicht entgegensteht.' },
-  { t: 'Recht auf Einschränkung', d: 'Einschränkung der Verarbeitung statt vollständiger Löschung.' },
-  { t: 'Recht auf Datenübertragbarkeit', d: 'Erhalt Ihrer Daten in einem strukturierten, gängigen Format.' },
-  { t: 'Widerspruchsrecht', d: 'Widerspruch gegen Verarbeitung auf Basis berechtigter Interessen oder zu Werbezwecken.' },
-  { t: 'Widerrufsrecht', d: 'Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft.' },
-  { t: 'Beschwerderecht', d: 'Beschwerde bei der für Sie zuständigen Datenschutz-Aufsichtsbehörde.' },
-];
-
-const providers = [
-  { name: 'Jotform', purpose: 'Formularverarbeitung für die Anfrage des kostenlosen Fördermittelberichts (Firmen-, Kontakt- und Vorhabensangaben).', note: 'AVV nach Art. 28 DSGVO erforderlich — Status zu bestätigen.' },
-  { name: 'Google Workspace', purpose: 'E-Mail-Kommunikation und Terminplanung im Rahmen der Beratung.', note: 'AVV nach Art. 28 DSGVO erforderlich — Status zu bestätigen.' },
-  { name: 'Anthropic Claude', purpose: 'KI-gestützte Erstellung und Prüfung von Inhalten (z. B. Website-Texte, Fördermittelberichte) durch unser Team — kein direkter Kundenkontakt über einen Chatbot auf dieser Website.', note: 'AVV/DPA erforderlich — Status zu bestätigen.' },
-  { name: 'Langdock', purpose: 'EU-gehostetes KI-Gateway (Frankfurt) für den unternehmensinternen KI-Einsatz.', note: 'AVV nach Art. 28 DSGVO erforderlich — Status zu bestätigen.' },
+  { t: 'Bestätigung & Auskunft', d: 'Ob und inwieweit wir Ihre personenbezogenen Daten verarbeiten, sowie Zugriff auf diese Daten und zusätzliche Informationen.' },
+  { t: 'Kopie der Daten', d: 'Eine Kopie der von Ihnen freiwillig bereitgestellten Daten in einem strukturierten, gängigen, maschinenlesbaren Format.' },
+  { t: 'Berichtigung', d: 'Korrektur der von uns über Sie gespeicherten personenbezogenen Daten.' },
+  { t: 'Löschung', d: 'Löschung Ihrer personenbezogenen Daten.' },
+  { t: 'Widerspruch', d: 'Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten durch uns.' },
+  { t: 'Einschränkung', d: 'Einschränkung der Verarbeitung Ihrer personenbezogenen Daten durch uns.' },
+  { t: 'Beschwerde', d: 'Beschwerde bei einer Aufsichtsbehörde.' },
 ];
 ---
 
@@ -37,26 +29,20 @@ const providers = [
       <!--
         ZU PRÜFEN (Eduard/Prospero, idealerweise mit Anwalt):
         1) Ob ES und Prospero rechtlich als "gemeinsam Verantwortliche" nach Art. 26
-           DSGVO auftreten (dann bräuchte es eine Vereinbarung dazu) oder ob jede
-           Seite nur für ihren eigenen Verarbeitungsanteil verantwortlich zeichnet.
-           Hier bewusst deskriptiv gehalten, keine Rechtsform behauptet.
-        2) Welche der unten unter "Eingesetzte Dienstleister" gelisteten Tools
-           TATSÄCHLICH mit personenbezogenen Daten von Website-Besuchern in
-           Berührung kommen (insbesondere: fließen Jotform-Formulardaten in
-           Claude/Langdock-gestützte Auswertung ein?) und ob die jeweiligen AVV
-           bereits abgeschlossen sind.
-        3) Zuständige Aufsichtsbehörden unten sind die Sitzländer beider Firmen
+           DSGVO auftreten oder ob jede Seite nur für ihren eigenen
+           Verarbeitungsanteil verantwortlich zeichnet. Hier bewusst deskriptiv
+           gehalten, keine Rechtsform behauptet.
+        2) Zuständige Aufsichtsbehörden unten sind die Sitzländer beider Firmen
            (Niedersachsen / Hamburg) — bitte gegenprüfen.
       -->
       <div class="reveal-group space-y-10 text-[0.95rem] leading-relaxed text-ash/85">
         <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Einführung</h2>
           <p>
-            Mit dieser Datenschutzerklärung informieren wir Sie über die Verarbeitung personenbezogener
-            Daten bei der Nutzung dieser Website. Fördermittel-Finder ist eine Kooperation zweier
-            eigenständiger Unternehmen — ES | Unternehmensberatung (Eduard Schmal) und Prospero
-            Beratungsgesellschaft mbH. Je nachdem, welchen Teil des Angebots Sie nutzen, kann die eine, die
-            andere oder können beide Seiten an der Datenverarbeitung beteiligt sein; Details dazu finden Sie
-            in den jeweiligen Abschnitten unten.
+            In dieser Datenschutzerklärung legen ES | Unternehmensberatung (Eduard Schmal) und Prospero
+            Beratungsgesellschaft mbH („wir", „unser") gemeinsam dar, wie wir mit den Daten von Nutzern
+            umgehen, die auf unsere Website unter fördermittel-finder.de zugreifen oder uns auf andere Weise
+            personenbezogene Daten bereitstellen (gemeinsam: „Benutzer").
           </p>
         </section>
 
@@ -78,18 +64,6 @@ const providers = [
         </section>
 
         <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Ihre Rechte</h2>
-          <div class="grid gap-x-6 gap-y-4 sm:grid-cols-2">
-            {rights.map((r) => (
-              <div>
-                <p class="font-display text-sm font-semibold text-ink">{r.t}</p>
-                <p class="text-[0.88rem] text-ash/75">{r.d}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
           <h2 class="mb-3 font-display text-lg font-semibold text-ink">Zuständige Aufsichtsbehörden</h2>
           <p class="mb-2">
             Für ES | Unternehmensberatung (Niedersachsen): Die Landesbeauftragte für den Datenschutz
@@ -98,6 +72,116 @@ const providers = [
           <p>
             Für Prospero Beratungsgesellschaft mbH (Hamburg): Der Hamburgische Beauftragte für Datenschutz
             und Informationsfreiheit, Ludwig-Erhard-Straße 22, 20459 Hamburg, mailbox@datenschutz.hamburg.de.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Ihre Rechte</h2>
+          <p class="mb-4">Sie haben folgende Rechte:</p>
+          <div class="grid gap-x-6 gap-y-4 sm:grid-cols-2">
+            {rights.map((r) => (
+              <div>
+                <p class="font-display text-sm font-semibold text-ink">{r.t}</p>
+                <p class="text-[0.88rem] text-ash/75">{r.d}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-4">
+            Beachten Sie, dass diese Rechte nicht uneingeschränkt gelten, sondern unseren eigenen
+            rechtmäßigen Interessen sowie behördlichen Vorschriften unterliegen. Wenn Sie eines der hier
+            aufgeführten Rechte in Anspruch nehmen möchten oder weitere Informationen wünschen, wenden Sie
+            sich an die oben genannten Kontaktadressen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Speicherung</h2>
+          <p>
+            Wir speichern Ihre personenbezogenen Daten so lange, wie es für die Bereitstellung unserer
+            Leistungen, die Einhaltung rechtlicher Verpflichtungen sowie die Beilegung von Streitigkeiten
+            erforderlich ist. Die Aufbewahrungsfristen richten sich nach der Art der erfassten Daten und dem
+            Zweck, für den diese Daten erfasst wurden. Wir können jederzeit und in unserem alleinigen
+            Ermessen unvollständige oder unrichtige Daten korrigieren, vervollständigen oder entfernen.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Grundlage für die Datenerfassung</h2>
+          <p>
+            Die Verarbeitung Ihrer personenbezogenen Daten ist erforderlich, um unseren vertraglichen
+            Verpflichtungen Ihnen gegenüber nachzukommen und damit wir Ihnen unsere Leistungen bereitstellen,
+            unser legitimes Interesse schützen sowie rechtlichen Verpflichtungen, denen wir unterworfen
+            sind, nachkommen können. Durch die Nutzung dieser Website stimmen Sie der Erfassung, Speicherung,
+            Verwendung und sonstigen Nutzung Ihrer personenbezogenen Daten wie in dieser
+            Datenschutzerklärung beschrieben zu.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Welche Daten werden erfasst?</h2>
+          <p class="mb-3">
+            Zur ersten Kategorie gehören nicht identifizierende Nutzungsdaten, die durch die Nutzung der
+            Website automatisch anfallen („nicht personenbezogene Daten") — etwa aggregierte technische
+            Daten Ihres Geräts (verwendeter Browser, Betriebssystem, Spracheinstellung, Zugriffszeit).
+          </p>
+          <p>
+            Zur zweiten Kategorie gehören personenbezogene Daten, die eine Einzelperson identifizieren
+            können. Dazu zählen Gerätedaten (z. B. IP-Adresse) sowie die Daten, die Sie uns aktiv mitteilen —
+            etwa beim Ausfüllen unseres Formulars für den kostenlosen Fördermittelbericht: Name,
+            Unternehmensangaben, Kontaktdaten und Angaben zu Ihrem Vorhaben.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Kostenloser Fördermittelbericht (Formular)</h2>
+          <p>
+            Wenn Sie über diese Website einen kostenlosen Fördermittelbericht anfordern, erheben wir die von
+            Ihnen im Formular angegebenen Daten (u. a. Unternehmensangaben, Kontaktdaten, Angaben zu Ihrem
+            Vorhaben). Die Verarbeitung erfolgt zur Erstellung des Berichts und zur Kontaktaufnahme —
+            Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahme auf Ihre Anfrage hin).
+            Das Formular wird über den Anbieter Jotform bereitgestellt.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Wie werden die Daten genutzt? An wen werden sie weitergegeben?</h2>
+          <p class="mb-3">
+            Wir geben Ihre Daten nicht an Dritte weiter, außer wie in dieser Datenschutzerklärung
+            beschrieben. Wir verwenden Daten zur Kommunikation mit Ihnen (Bearbeitung Ihrer Anfrage,
+            Beratung) sowie zu statistischen Zwecken, die der Verbesserung unserer Website dienen.
+          </p>
+          <p>
+            Darüber hinaus können wir personenbezogene Daten an vertrauenswürdige externe Anbieter
+            weiterleiten, soweit dies für den Betrieb dieser Website erforderlich ist — etwa zum Hosten und
+            Betreiben der Website oder zum Speichern und Verarbeiten von Daten in unserem Namen. Wir können
+            Daten außerdem offenlegen, wenn wir dazu gesetzlich verpflichtet sind oder dies zur Wahrung
+            unserer Rechte erforderlich ist.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Cookies</h2>
+          <p class="mb-3">
+            Ein „Cookie" ist ein kleines Datenpaket, das Ihrem Gerät beim Besuch einer Website zugeordnet
+            wird — etwa um die Navigation zu erleichtern oder Einstellungen zu speichern. Man unterscheidet
+            Sitzungscookies (werden beim Schließen des Browsers gelöscht), permanente Cookies (bleiben für
+            eine festgelegte Dauer gespeichert) und Drittanbieter-Cookies (werden von eingebundenen
+            Fremddiensten gesetzt, z. B. Web-Analytics).
+          </p>
+          <p>
+            Diese Website setzt aktuell keine dieser Cookie-Arten ein — es läuft kein Google Analytics,
+            keine Werbe-Einbindung und kein Drittanbieter-Tracking. Sollte sich das künftig ändern, passen
+            wir diesen Abschnitt entsprechend an.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Skript- und Schriftbibliotheken</h2>
+          <p>
+            Damit unsere Inhalte in jedem Browser korrekt dargestellt werden, verwenden wir Schriftarten
+            (Fraunces, IBM Plex Sans, IBM Plex Mono). Diese sind auf unserem eigenen Server hinterlegt und
+            werden nicht von einem externen Anbieter wie Google Fonts geladen — es findet dabei keine
+            Verbindung zu Dritten statt.
           </p>
         </section>
 
@@ -112,78 +196,78 @@ const providers = [
         </section>
 
         <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Kostenloser Fördermittelbericht (Formular)</h2>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Erfassung von Daten durch Dritte</h2>
           <p>
-            Wenn Sie über diese Website einen kostenlosen Fördermittelbericht anfordern, erheben wir die von
-            Ihnen im Formular angegebenen Daten (u. a. Unternehmensangaben, Kontaktdaten, Angaben zu Ihrem
-            Vorhaben). Die Verarbeitung erfolgt zur Erstellung des Berichts und zur Kontaktaufnahme —
-            Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahme auf Ihre Anfrage hin).
-            Das Formular wird über den Anbieter Jotform bereitgestellt (siehe „Eingesetzte Dienstleister" unten).
+            Diese Datenschutzerklärung behandelt nur die Nutzung und Offenlegung von Daten, die wir direkt
+            von Ihnen erfassen. Wenn Sie Daten auf anderen Websites veröffentlichen oder Dritten im Internet
+            offenlegen, gelten deren eigene Bestimmungen. Sie bezieht sich nicht auf Geschäftspraktiken von
+            Unternehmen, die nicht in unserem Besitz sind oder nicht unter unserer Kontrolle stehen.
           </p>
         </section>
 
         <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Eingesetzte Dienstleister und KI-Tools</h2>
-          <p class="mb-4">
-            Für den Betrieb dieser Website und die Erbringung unserer Beratungsleistungen setzen wir
-            folgende externe Anbieter ein. Mit allen Anbietern, die dabei in unserem Auftrag
-            personenbezogene Daten verarbeiten, ist ein Auftragsverarbeitungsvertrag (AVV) nach Art. 28
-            DSGVO erforderlich.
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Wie schützen wir Ihre Daten?</h2>
+          <p>
+            Wir setzen Sicherheitsmaßnahmen mit großer Sorgfalt um und verwenden branchenübliche Verfahren,
+            um den Schutz der erfassten und gespeicherten Daten sicherzustellen und die unbefugte Verwendung
+            solcher Daten zu verhindern. Wir verlangen außerdem von Dritten, dass sie sich an vergleichbare
+            Sicherheitsanforderungen halten.
           </p>
-          <div class="space-y-4">
-            {providers.map((p) => (
-              <div class="rounded-sm border border-line-paper bg-white p-5">
-                <p class="font-display text-sm font-semibold text-ink">{p.name}</p>
-                <p class="mb-1 text-[0.88rem] text-ash/78">{p.purpose}</p>
-                <p class="font-mono text-[0.72rem] text-gold">{p.note}</p>
-              </div>
-            ))}
-          </div>
         </section>
 
         <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">KI-generierte und KI-unterstützte Inhalte</h2>
-          <p class="mb-3">
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Übermittlung von Daten außerhalb des Europäischen Wirtschaftsraums</h2>
+          <p>
+            Sollten einzelne Empfänger ihren Sitz nicht im Europäischen Wirtschaftsraum haben, übermitteln
+            wir Ihre Daten nur in von der Europäischen Kommission genehmigte Länder mit angemessenem
+            Datenschutzniveau oder stellen ein solches durch eine rechtliche Vereinbarung sicher.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Werbung &amp; Marketing</h2>
+          <p>
+            Wir können Ihre Kontaktdaten (Name, E-Mail-Adresse, Telefonnummer) verwenden, um Ihnen
+            Informationen zu unseren Leistungen bereitzustellen, die Sie interessieren könnten. Sie erhalten
+            dabei stets die Möglichkeit, sich von weiteren Zusendungen abzumelden. Wichtige Mitteilungen
+            ohne werblichen Charakter (z. B. zur laufenden Beratung) können wir Ihnen weiterhin zusenden.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Unternehmenstransaktion</h2>
+          <p>
+            Im Fall einer Unternehmenstransaktion (z. B. Verkauf wesentlicher Unternehmensteile, Fusion,
+            Konsolidierung) können Daten weitergegeben werden. In einem solchen Fall übernimmt der Erwerber
+            die in dieser Datenschutzerklärung dargelegten Rechte und Pflichten.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Minderjährige</h2>
+          <p>
+            Diese Website richtet sich nicht an Kinder. Die Nutzung unserer Leistungen durch Minderjährige
+            ist nur mit vorheriger Einwilligung eines Erziehungsberechtigten zulässig. Wir erfassen
+            personenbezogene Daten von Minderjährigen nicht wissentlich.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-display text-lg font-semibold text-ink">KI-generierte Inhalte</h2>
+          <p>
             Seit dem 2. August 2026 gelten die Transparenzpflichten aus Art. 50 der EU-Verordnung über
-            künstliche Intelligenz (KI-VO / AI Act). Dazu informieren wir Sie wie folgt:
-          </p>
-          <p class="mb-3">
-            <strong class="text-ink">Video:</strong> Das Hintergrundvideo im Kopfbereich dieser Website wurde
+            künstliche Intelligenz (KI-VO / AI Act). Das Hintergrundvideo im Kopfbereich dieser Website wurde
             mit generativer KI (Google VEO 3) erstellt und zeigt keine echten Personen. Es ist auf der
             Website als „Video KI-generiert" gekennzeichnet.
-          </p>
-          <p>
-            <strong class="text-ink">Texte:</strong> Teile der Website-Texte wurden mit KI-Unterstützung
-            (Anthropic Claude) entworfen und von unserem Team inhaltlich geprüft und verantwortet. Rein
-            werblich-redaktionelle Texte unterliegen nach Art. 50 Abs. 4 UAbs. 2 KI-VO keiner
-            Kennzeichnungspflicht; wir weisen an dieser Stelle dennoch freiwillig transparent darauf hin.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Cookies &amp; Tracking</h2>
-          <p>
-            Diese Website setzt aktuell keine Analyse- oder Marketing-Cookies ein — es läuft kein Google
-            Analytics, keine Werbe-Einbindung und kein Drittanbieter-Tracking. Schriftarten sind
-            selbst gehostet, es werden keine externen Font-Anfragen an Dritte gesendet. Sollte sich das
-            künftig ändern, passen wir diesen Abschnitt entsprechend an.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="mb-3 font-display text-lg font-semibold text-ink">Speicherdauer</h2>
-          <p>
-            Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich
-            ist oder gesetzliche Aufbewahrungspflichten bestehen. Danach werden die Daten gelöscht oder
-            anonymisiert.
           </p>
         </section>
 
         <section>
           <h2 class="mb-3 font-display text-lg font-semibold text-ink">Änderungen dieser Datenschutzerklärung</h2>
           <p>
-            Wir passen diese Datenschutzerklärung an, sobald sich unsere Datenverarbeitung oder die
-            gesetzlichen Vorgaben ändern. Für Ihren erneuten Besuch gilt dann die jeweils aktuelle Fassung.
+            Wir behalten uns vor, diese Datenschutzerklärung von Zeit zu Zeit zu ändern. Das Datum der
+            aktuellen Fassung finden Sie oben unter „Stand". Für Ihren erneuten Besuch gilt die jeweils
+            aktuelle Fassung.
           </p>
         </section>
       </div>
