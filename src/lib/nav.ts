@@ -4,12 +4,16 @@
 // the component itself (Astro has no way to auto-discover that; this is as
 // close to "automatic" as a static site gets without real overhead).
 export interface NavItem {
-  id: string;
+  // On-page anchor (homepage section id) — mutually exclusive with `href`.
+  id?: string;
+  // Standalone page — used as-is instead of the `/#id` anchor pattern.
+  href?: string;
   label: string;
 }
 
 export const navItems: NavItem[] = [
   { id: 'ablauf', label: 'Ablauf' },
   { id: 'fuer-wen', label: 'Für wen' },
+  { href: '/wissen/', label: 'Wissen' },
   { id: 'kooperation', label: 'Über uns' },
 ];

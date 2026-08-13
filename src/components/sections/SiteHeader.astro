@@ -9,7 +9,7 @@ import { navItems } from '../../lib/nav';
   </a>
   <nav class="hidden gap-6 font-body text-sm text-mist md:flex">
     {navItems.map((item) => (
-      <a href={withBase(`/#${item.id}`)} class="border-b border-transparent pb-0.5 opacity-90 transition-colors hover:border-gold hover:opacity-100">
+      <a href={withBase(item.href ?? `/#${item.id}`)} class="border-b border-transparent pb-0.5 opacity-90 transition-colors hover:border-gold hover:opacity-100">
         {item.label}
       </a>
     ))}

@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const segments = [
   { title: 'Umstrukturierung', text: 'Finanzierung & Umsetzung' },
   { title: 'Digitalisierung', text: 'Prozessoptimierung & KI-Einführung' },
@@ -21,9 +23,10 @@ const kmuClasses = [
     <h2 class="mb-5 max-w-[30ch] text-[1.9rem] font-semibold leading-tight md:text-[2.15rem]">
       Gemacht für den Mittelstand
     </h2>
-    <p class="mb-9 max-w-[68ch] text-[0.98rem] leading-relaxed text-ash/80">
+    <p class="mb-5 text-[0.98rem] leading-relaxed text-ash/80">
       Prospero ist ein inhabergeführtes Beratungsunternehmen und seit der Gründung 1997 kompetenter, zuverlässiger Ansprechpartner für Unternehmer und Selbständige im Mittelstand — spezialisiert auf mehrere Leistungsfelder, um in vielen Unternehmenssituationen umfassend beraten zu können. Fördermittel-Finder bündelt diese Erfahrung für Bestandsunternehmen, die als kleine oder mittlere Unternehmen (KMU) gelten — genau die Größenordnung, in der die BAFA-geförderte Unternehmensberatung greift.
     </p>
+    <a href={withBase('/wissen/')} class="btn-outline-forest mb-9 !px-4 !py-2.5 text-[0.84rem]">Mehr im Wissen-Bereich</a>
 
     <div class="def-box reveal-group mb-9">
       <p class="eyebrow-forest mb-2">Definition</p>

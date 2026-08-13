@@ -11,6 +11,7 @@ const toc = [
   { id: 'foerderarten', label: 'Welche Arten von Fördermitteln gibt es?' },
   { id: 'kmu-definition', label: 'Wer kann Fördermittel beantragen?' },
   { id: 'foerderprogramme', label: 'Die wichtigsten Förderprogramme im Überblick' },
+  { id: 'forschung-entwicklung', label: 'Förderung von Forschung und Entwicklung' },
   { id: 'antragsprozess', label: 'So läuft eine Antragstellung ab' },
   { id: 'anlaesse', label: 'Fördermittel nach Unternehmenssituation' },
   { id: 'haeufige-fehler', label: 'Häufige Fehler bei der Antragstellung' },
@@ -20,11 +21,11 @@ const toc = [
 // Tailwind's JIT scanner needs literal class strings, not interpolated ones —
 // bg-instrument-${key} would silently fail to generate. Full class name per instrument instead.
 const instruments = [
-  { pillClass: 'pill mb-2 inline-block bg-instrument-zuschuss', name: 'Zuschuss', text: 'Nicht rückzahlbarer Geldbetrag, meist anteilig zu den förderfähigen Kosten (z. B. BAFA-Beratungsförderung). Der klassische „geschenkte" Fördereuro.' },
-  { pillClass: 'pill mb-2 inline-block bg-instrument-kredit', name: 'Kredit', text: 'Zinsgünstiges Darlehen, oft mit tilgungsfreien Anlaufjahren — etwa die KfW-Förderkredite. Muss zurückgezahlt werden, aber zu besseren Konditionen als am freien Markt.' },
-  { pillClass: 'pill mb-2 inline-block bg-instrument-buergschaft', name: 'Bürgschaft', text: 'Übernahme eines Kreditausfallrisikos durch die Bürgschaftsbank des jeweiligen Bundeslands — hilft, wenn die Hausbank sonst zu wenig Sicherheiten sieht.' },
-  { pillClass: 'pill mb-2 inline-block bg-instrument-steuer', name: 'Steuerhebel', text: 'Steuerliche Vergünstigung statt Direktzahlung, etwa die Forschungszulage nach dem Forschungszulagengesetz (FZulG) für Entwicklungsprojekte.' },
-  { pillClass: 'pill mb-2 inline-block bg-instrument-personal', name: 'Personalförderung', text: 'Zuschüsse zu Aus- und Weiterbildungskosten oder zur Einstellung, z. B. über die Bundesagentur für Arbeit oder Landesprogramme.' },
+  { pillClass: 'pill mb-2 inline-block bg-instrument-zuschuss', name: 'Zuschuss', text: 'Nicht rückzahlbarer Geldbetrag, meist anteilig zu den förderfähigen Kosten (z. B. BAFA-Beratungsförderung oder GRW-Investitionszuschüsse). Der klassische „geschenkte" Fördereuro — dafür oft an feste Budgets und Antragsfenster gebunden.' },
+  { pillClass: 'pill mb-2 inline-block bg-instrument-kredit', name: 'Kredit', text: 'Zinsgünstiges Darlehen, oft mit tilgungsfreien Anlaufjahren — etwa die KfW-Förderkredite oder die Programme der Landesförderbanken. Muss zurückgezahlt werden, aber zu deutlich besseren Konditionen als am freien Kapitalmarkt und häufig ohne die sonst üblichen Sicherheiten.' },
+  { pillClass: 'pill mb-2 inline-block bg-instrument-buergschaft', name: 'Bürgschaft', text: 'Übernahme eines Teils des Kreditausfallrisikos durch die Bürgschaftsbank des jeweiligen Bundeslands — meist bis zu 80 % der Kreditsumme. Hilft, wenn die Hausbank sonst wegen fehlender Sicherheiten ablehnen würde, etwa bei jungen Unternehmen ohne umfangreiches Anlagevermögen.' },
+  { pillClass: 'pill mb-2 inline-block bg-instrument-steuer', name: 'Steuerhebel', text: 'Steuerliche Vergünstigung statt Direktzahlung, etwa die Forschungszulage nach dem Forschungszulagengesetz (FZulG) für Entwicklungsprojekte oder Abschreibungsregeln für Investitionen. Wirkt über die Steuererklärung, unabhängig von Antragsfenstern, und ist mit anderen Fördermitteln oft kombinierbar.' },
+  { pillClass: 'pill mb-2 inline-block bg-instrument-personal', name: 'Personalförderung', text: 'Zuschüsse zu Aus- und Weiterbildungskosten oder zur Einstellung, z. B. über die Bundesagentur für Arbeit oder Landesprogramme. Besonders relevant bei Umstrukturierung, Wachstum oder wenn Mitarbeitende für neue Aufgaben qualifiziert werden müssen.' },
 ];
 
 const kmuClasses = [
@@ -34,42 +35,48 @@ const kmuClasses = [
 ];
 
 const programs = [
-  { name: 'KfW-Förderkredite', geber: 'KfW Bankengruppe (Bund)', text: 'Zinsgünstige Darlehen für Investitionen, Betriebsmittel oder Digitalisierung — beantragt über die Hausbank, nicht direkt bei der KfW.' },
+  { name: 'KfW-Förderkredite', geber: 'KfW Bankengruppe (Bund)', text: 'Zinsgünstige Darlehen für Investitionen, Betriebsmittel, Digitalisierung oder Unternehmensnachfolge — beantragt über die Hausbank, nicht direkt bei der KfW. Die Konditionen richten sich unter anderem danach, wie lange das Unternehmen bereits am Markt ist und wofür der Kredit verwendet wird.' },
   { name: 'BAFA-Förderung Unternehmensberatung', geber: 'Bundesamt für Wirtschaft und Ausfuhrkontrolle', text: 'Zuschuss zu den Kosten einer geförderten Erstberatung — 50–80 % der Beratungskosten je nach Bundesland, maximal 2.800 € bei 3.500 € Bemessungsgrundlage. Genau hier setzt unser kostenloser Fördermittelbericht an.' },
-  { name: 'Bürgschaftsbanken der Länder', geber: 'Landeseigene Bürgschaftsbanken', text: 'Übernehmen einen Teil des Kreditausfallrisikos, wenn Sicherheiten für ein Bankdarlehen fehlen — je Bundesland unterschiedlich organisiert.' },
-  { name: 'Landesförderinstitute', geber: 'z. B. NBank, L-Bank, IBB, LfA', text: 'Ergänzen Bundesprogramme um regionale Investitions- und Digitalisierungsförderung — Konditionen unterscheiden sich stark je Bundesland.' },
-  { name: 'EU-Förderprogramme', geber: 'Europäische Kommission, Länder als Umsetzungsstelle', text: 'Strukturfonds wie der EFRE fördern u. a. Innovation, Digitalisierung und Klimaschutz — die Umsetzung läuft über die einzelnen Bundesländer.' },
-  { name: 'Forschungszulage', geber: 'Finanzamt (FZulG)', text: 'Steuerliche Förderung von Forschungs- und Entwicklungsprojekten, unabhängig von Unternehmensgröße oder -gewinn — auch für Auftragsforschung.' },
+  { name: 'Bürgschaftsbanken der Länder', geber: 'Landeseigene Bürgschaftsbanken', text: 'Übernehmen einen Teil des Kreditausfallrisikos, wenn Sicherheiten für ein Bankdarlehen fehlen — organisatorisch und in den Konditionen je Bundesland unterschiedlich, aber überall ein wichtiger Hebel, um überhaupt an einen Kredit zu kommen.' },
+  { name: 'Landesförderinstitute', geber: 'z. B. NBank, L-Bank, IBB, LfA, ISB, ILB', text: 'Ergänzen Bundesprogramme um regionale Investitions-, Gründungs- und Digitalisierungsförderung. Viele Bundesländer haben zusätzlich eigene, kleinere Förderlinien — etwa Innovations- oder Digitalisierungsgutscheine —, die bundesweit kaum bekannt, aber real und oft unbürokratisch zugänglich sind.' },
+  { name: 'GRW-Investitionsförderung', geber: 'Bund und Länder (Gemeinschaftsaufgabe)', text: 'Investitionszuschüsse für Unternehmen in strukturschwächeren Regionen, um Arbeitsplätze zu schaffen oder zu sichern. Die Förderquote hängt vom konkreten Fördergebiet und der Unternehmensgröße ab; kleine Unternehmen erhalten in der Regel höhere Sätze als große.' },
+  { name: 'Mittelständische Beteiligungsgesellschaften', geber: 'MBG der Bundesländer, KfW-Beteiligungsprogramme', text: 'Stellen Eigenkapital oder eigenkapitalähnliche Mittel (stille Beteiligungen, Mezzanine-Kapital) bereit, ohne dass dafür klassische Kreditsicherheiten nötig sind. Relevant, wenn die Eigenkapitalquote gestärkt werden soll oder eine Bank das Vorhaben allein nicht mehr trägt.' },
+  { name: 'EU-Förderprogramme', geber: 'Europäische Kommission, Länder als Umsetzungsstelle', text: 'Strukturfonds wie der EFRE fördern u. a. Innovation, Digitalisierung und Klimaschutz, der ESF+ zielt auf Qualifizierung und Beschäftigung. Die Umsetzung läuft über die einzelnen Bundesländer, die eigene, teils sehr unterschiedliche Förderaufrufe daraus ableiten.' },
 ];
 
 const anlaesse = [
-  { title: 'Umstrukturierung', text: 'Finanzierungs- und Bürgschaftsprogramme begleiten Restrukturierungen, wenn Kapitalbedarf und Bonität auseinanderlaufen.' },
-  { title: 'Digitalisierung', text: 'Landesprogramme und KfW-Digitalisierungskredite fördern Software-Einführung, Prozessautomatisierung und KI-Projekte.' },
-  { title: 'Wachstum', text: 'Investitionskredite und Beteiligungskapital der Landesförderinstitute unterstützen Kapazitätsausbau und Markterschließung.' },
-  { title: 'Nachfolge', text: 'Eigene KfW- und Landesprogramme erleichtern Übernahmefinanzierung und Beratung rund um die Unternehmensübergabe.' },
-  { title: 'Energieeffizienz', text: 'BAFA- und KfW-Programme fördern Sanierung, effiziente Anlagen und den Umstieg auf erneuerbare Energien.' },
-  { title: 'Weiterbildung', text: 'Zuschüsse zu Qualifizierungskosten für Mitarbeitende, teils über die Bundesagentur für Arbeit, teils über Landesprogramme.' },
+  { title: 'Umstrukturierung', text: 'Finanzierungs- und Bürgschaftsprogramme begleiten Restrukturierungen, wenn Kapitalbedarf und Bonität auseinanderlaufen. Auch geförderte Beratung hilft hier oft zuerst, um die Ausgangslage sauber aufzuarbeiten, bevor überhaupt ein Kreditantrag sinnvoll ist.' },
+  { title: 'Digitalisierung', text: 'Landesprogramme, kostenlose Beratungsangebote und KfW-Förderkredite unterstützen Software-Einführung, Prozessautomatisierung und KI-Projekte. Welche Kombination passt, hängt stark davon ab, ob es sich um eine kleinere Anschaffung oder ein größeres Digitalisierungsvorhaben handelt.' },
+  { title: 'Wachstum', text: 'Investitionskredite, Investitionszuschüsse und Beteiligungskapital der Landesförderinstitute unterstützen Kapazitätsausbau und Markterschließung. Bei Wachstum lohnt sich oft eine Kombination aus mehreren Instrumenten, solange Doppelförderung derselben Kosten vermieden wird.' },
+  { title: 'Nachfolge', text: 'Eigene KfW- und Landesprogramme erleichtern die Übernahmefinanzierung, teils mit reduzierten Sicherheitenanforderungen für die übernehmende Person. Ergänzend bieten viele Bundesländer kostenlose Beratung rund um die Unternehmensübergabe an.' },
+  { title: 'Energieeffizienz', text: 'BAFA- und KfW-Programme fördern Sanierung, effiziente Anlagen und den Umstieg auf erneuerbare Energien — von der Heizungstechnik über Prozesswärme bis zur Gebäudehülle. Bei Fuhrparks kommen zusätzlich Programme rund um Elektromobilität und Ladeinfrastruktur infrage.' },
+  { title: 'Forschung & Entwicklung', text: 'Die steuerliche Forschungszulage steht unabhängig von Unternehmensgröße und Gewinn offen; ergänzend gibt es projektbezogene Zuschussprogramme für Innovationsvorhaben. Mehr dazu im Abschnitt „Förderung von Forschung und Entwicklung" weiter unten.' },
+  { title: 'Weiterbildung', text: 'Zuschüsse zu Qualifizierungskosten für Mitarbeitende, teils über die Bundesagentur für Arbeit, teils über Landesprogramme. Besonders kleinere Betriebe profitieren häufig von höheren Fördersätzen als größere Unternehmen.' },
 ];
 
 const fehler = [
-  { title: 'Antrag nach Maßnahmenbeginn', text: 'Der häufigste Ablehnungsgrund: Bei den meisten Programmen muss der Antrag bewilligt sein, bevor Sie Verträge unterschreiben oder Rechnungen bezahlen.' },
-  { title: 'Falsches Programm gewählt', text: 'Zuschuss, Kredit oder Bürgschaft passen unterschiedlich gut zu Vorhaben und Bonität — die falsche Wahl kostet Zeit und im schlimmsten Fall den Zugang zur Förderung.' },
-  { title: 'Fehlende oder unvollständige Unterlagen', text: 'Formfehler bei Businessplan, Kostenaufstellung oder Nachweisen verzögern die Bewilligung oder führen direkt zur Ablehnung.' },
-  { title: 'Kumulierung nicht geprüft', text: 'Mehrere Förderungen für dasselbe Vorhaben zu kombinieren ist oft möglich, unterliegt aber Obergrenzen (De-minimis-Regelung) — das wird häufig übersehen.' },
+  { title: 'Antrag nach Maßnahmenbeginn', text: 'Der häufigste Ablehnungsgrund: Bei den meisten Programmen muss der Antrag bewilligt sein, bevor Sie Verträge unterschreiben oder Rechnungen bezahlen. Selbst ein unterschriebener Kostenvoranschlag kann je nach Programm bereits als Maßnahmenbeginn gelten.' },
+  { title: 'Falsches Programm gewählt', text: 'Zuschuss, Kredit, Bürgschaft oder Beteiligungskapital passen unterschiedlich gut zu Vorhaben und Bonität — die falsche Wahl kostet Zeit und im schlimmsten Fall den Zugang zur Förderung, weil das Budget des passenderen Programms zwischenzeitlich ausgeschöpft ist.' },
+  { title: 'Fehlende oder unvollständige Unterlagen', text: 'Formfehler bei Businessplan, Kostenaufstellung oder Nachweisen verzögern die Bewilligung oder führen direkt zur Ablehnung. Gerade bei mehrstufigen Verfahren über die Hausbank reicht ein fehlendes Dokument, um den gesamten Prozess neu zu starten.' },
+  { title: 'Kumulierung nicht geprüft', text: 'Mehrere Förderungen für dasselbe Vorhaben zu kombinieren ist oft möglich, unterliegt aber Obergrenzen (De-minimis-Regelung) und einem grundsätzlichen Doppelförderungsverbot für identische Kosten — das wird häufig übersehen und im Nachhinein zum Problem.' },
+  { title: 'Regionale und branchenspezifische Programme übersehen', text: 'Neben den großen, bundesweit bekannten Programmen gibt es zahlreiche kleinere Förderungen von Kammern, Verbänden, Kommunen und Ländern. Wer nur bei KfW und BAFA sucht, lässt regelmäßig zusätzliche Förderung liegen.' },
 ];
 
 const faqs = [
-  { q: 'Was sind Fördermittel für Unternehmen?', a: 'Finanzielle Unterstützung von Bund, Ländern oder der EU — als Zuschuss, zinsgünstiger Kredit, Bürgschaft, Steuererleichterung oder Personalförderung — für Investitionen, Beratung, Digitalisierung oder Weiterbildung.' },
-  { q: 'Wer kann Fördermittel beantragen?', a: 'Grundsätzlich jedes Unternehmen, das die Kriterien des jeweiligen Programms erfüllt. Viele Programme richten sich speziell an kleine und mittlere Unternehmen (KMU) nach EU-Definition.' },
-  { q: 'Muss ich den Antrag über meine Bank stellen?', a: 'Bei den meisten Kredit- und Bürgschaftsprogrammen gilt das Hausbankprinzip — der Antrag läuft über Ihre Bank. Zuschüsse wie die BAFA-Beratungsförderung beantragen Sie dagegen direkt.' },
-  { q: 'Wie lange dauert ein Förderantrag?', a: 'Je nach Programm und Institution einige Wochen bis wenige Monate. Wichtig ist in jedem Fall: erst der Antrag, dann die Maßnahme.' },
+  { q: 'Was sind Fördermittel für Unternehmen?', a: 'Finanzielle Unterstützung von Bund, Ländern oder der EU — als Zuschuss, zinsgünstiger Kredit, Bürgschaft, Beteiligungskapital, Steuererleichterung oder Personalförderung — für Investitionen, Beratung, Digitalisierung, Forschung oder Weiterbildung.' },
+  { q: 'Wer kann Fördermittel beantragen?', a: 'Grundsätzlich jedes Unternehmen, das die Kriterien des jeweiligen Programms erfüllt. Viele Programme richten sich speziell an kleine und mittlere Unternehmen (KMU) nach EU-Definition, andere — etwa die Forschungszulage — stehen unabhängig von der Unternehmensgröße offen.' },
+  { q: 'Muss ich den Antrag über meine Bank stellen?', a: 'Bei den meisten Kredit- und Bürgschaftsprogrammen gilt das Hausbankprinzip — der Antrag läuft über Ihre Bank. Zuschüsse wie die BAFA-Beratungsförderung sowie die steuerliche Forschungszulage beantragen Sie dagegen direkt bei der zuständigen Stelle bzw. über die Steuererklärung.' },
+  { q: 'Wie lange dauert ein Förderantrag?', a: 'Je nach Programm und Institution einige Wochen bis wenige Monate. Wichtig ist in jedem Fall: erst der Antrag, dann die Maßnahme — eine rückwirkende Förderung ist bei den meisten Programmen ausgeschlossen.' },
+  { q: 'Können auch Forschungs- und Entwicklungsprojekte gefördert werden?', a: 'Ja. Die steuerliche Forschungszulage steht unabhängig von Unternehmensgröße und Gewinnsituation offen und deckt auch Auftragsforschung ab. Ergänzend gibt es projektbezogene Zuschussprogramme, deren Passung vom konkreten Vorhaben abhängt.' },
+  { q: 'Was ist der Unterschied zwischen Fördermitteln und Beteiligungskapital?', a: 'Klassische Fördermittel sind Zuschüsse, Kredite oder Bürgschaften mit festen Konditionen. Beteiligungskapital dagegen stärkt die Eigenkapitalbasis — etwa über eine Mittelständische Beteiligungsgesellschaft — und wird nicht wie ein klassischer Kredit getilgt, sondern über die Laufzeit der Beteiligung vergütet.' },
+  { q: 'Lohnt sich eine Fördermittelberatung auch für kleine Unternehmen?', a: 'Gerade für kleine Unternehmen lohnt sich der Blick oft besonders, weil viele Programme höhere Fördersätze für kleine und kleinste Unternehmen vorsehen und die Recherche allein neben dem Tagesgeschäft schwer zu leisten ist.' },
   { q: 'Was kostet eine Fördermittelberatung?', a: 'Unser Fördermittelbericht ist kostenlos und unverbindlich. Die anschließende Beratung kann selbst über die BAFA-Förderung bezuschusst werden.' },
 ];
 ---
 
 <Layout
   title="Fördermittel für Unternehmen: Programme, Ablauf & Fehler vermeiden"
-  description="Welche Fördermittel gibt es für KMU, wer bekommt sie und wie läuft die Antragstellung ab? Der Überblick zu Zuschüssen, Krediten, Bürgschaften und den häufigsten Fehlern."
+  description="Welche Fördermittel gibt es für KMU, wer bekommt sie und wie läuft die Antragstellung ab? Der Überblick zu Zuschüssen, Krediten, Bürgschaften, Beteiligungskapital, Forschungsförderung und den häufigsten Fehlern."
   path="/wissen/"
 >
   <SiteHeader />
@@ -82,8 +89,11 @@ const faqs = [
         </h1>
         <p class="max-w-[64ch] text-[1.05rem] leading-relaxed text-ash/80">
           Rund 20 Mrd. € Fördermittel bleiben in Deutschland jedes Jahr ungenutzt — nicht, weil das Geld
-          fehlt, sondern weil der Zugang kompliziert ist. Dieser Leitfaden ordnet die wichtigsten
-          Förderarten, Programme und den Antragsprozess für kleine und mittlere Unternehmen ein.
+          fehlt, sondern weil der Zugang kompliziert ist. Zuständigkeiten verteilen sich auf Bund, Länder,
+          Kommunen und die EU, jedes Programm hat eigene Fristen, Formulare und Fördersätze, und wer nicht
+          genau weiß, wonach er suchen muss, findet oft nur einen Bruchteil dessen, was tatsächlich möglich
+          wäre. Dieser Leitfaden ordnet die wichtigsten Förderarten, Programme und den Antragsprozess für
+          kleine und mittlere Unternehmen ein.
         </p>
         <p class="mt-4 font-mono text-xs text-ash/55">Stand: {updated}</p>
       </div>
@@ -105,19 +115,35 @@ const faqs = [
 
         <section id="was-sind-foerdermittel" class="scroll-mt-24">
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Was sind Fördermittel?</h2>
-          <p>
+          <p class="mb-4">
             Fördermittel sind finanzielle Unterstützungsleistungen von Bund, Ländern, Kommunen oder der EU,
             die Unternehmen bei Investitionen, Beratung, Digitalisierung, Forschung oder Weiterbildung
             entlasten. Anders als ein klassischer Bankkredit sind sie zweckgebunden: Jedes Programm hat
             eigene Voraussetzungen, Fristen und einen genau definierten Förderzweck.
+          </p>
+          <p class="mb-4">
+            Der Hintergrund ist wirtschafts- und strukturpolitisch: Der Staat möchte gezielt Investitionen,
+            Innovation, Beschäftigung oder den Erhalt von Betrieben in bestimmten Regionen fördern — nicht
+            beliebige Ausgaben. Deshalb prüft jede Förderstelle vor der Bewilligung, ob ein Vorhaben zum
+            jeweiligen Förderzweck passt, und verlangt dafür Nachweise, die über eine übliche
+            Kreditwürdigkeitsprüfung hinausgehen.
+          </p>
+          <p>
+            Für Unternehmen bedeutet das: Fördermittel sind kein Selbstläufer, sondern erfordern etwas
+            Vorlauf. Wer sich frühzeitig mit den passenden Programmen befasst, kann Investitionen jedoch
+            spürbar günstiger, mit weniger Eigenkapitaleinsatz oder mit zusätzlicher fachlicher Begleitung
+            umsetzen, als es ohne Förderung möglich wäre.
           </p>
         </section>
 
         <section id="foerderarten" class="scroll-mt-24">
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Welche Arten von Fördermitteln gibt es?</h2>
           <p class="mb-6">
-            Fördermittel lassen sich in fünf Instrumente einteilen. Welches infrage kommt, hängt vom
-            Vorhaben, der Bonität und dem gewünschten Rückzahlungsprofil ab:
+            Fördermittel lassen sich in fünf Grundtypen einteilen. Welcher infrage kommt, hängt vom
+            Vorhaben, der Bonität, dem gewünschten Rückzahlungsprofil und teils auch vom Alter des
+            Unternehmens ab — viele Programme unterscheiden zwischen jungen und etablierten Betrieben.
+            In der Praxis werden mehrere Typen oft kombiniert, etwa ein zinsgünstiger Kredit zusammen mit
+            einer Bürgschaft als Sicherheitenersatz.
           </p>
           <div class="grid gap-4 sm:grid-cols-2">
             {instruments.map((i) => (
@@ -148,9 +174,18 @@ const faqs = [
               ))}
             </div>
           </div>
+          <p class="mb-4">
+            Gezählt werden dabei nicht einfach Köpfe, sondern Jahresarbeitseinheiten — Teilzeitkräfte
+            fließen anteilig ein, Auszubildende zählen meist nicht mit. Wichtig ist außerdem, dass
+            verbundene und Partnerunternehmen unter bestimmten Voraussetzungen mitgerechnet werden müssen:
+            Wer über eine Holding oder mehrheitliche Beteiligungen mit anderen Firmen verflochten ist,
+            kann trotz kleiner Einzelfirma die KMU-Schwelle insgesamt überschreiten.
+          </p>
           <p>
             Für Bestandsunternehmen — Betriebe, die seit mindestens zwei bis drei Jahren am Markt sind —
-            gelten eigene Programme und Fördersätze, getrennt von der Gründungsförderung. Mehr zur
+            gelten eigene Programme und Fördersätze, getrennt von der Gründungs- und Nachfolgeförderung.
+            Wer kein KMU ist, ist deshalb nicht automatisch von jeder Förderung ausgeschlossen, hat aber
+            Zugang zu einem anderen, meist kleineren Ausschnitt der Programmlandschaft. Mehr zur
             KMU-Einordnung und was das für Sie bedeutet, finden Sie auf unserer <a href={withBase('/#fuer-wen')} class="text-forest underline decoration-forest/30 underline-offset-2 hover:decoration-forest">Startseite</a>.
           </p>
         </section>
@@ -159,8 +194,9 @@ const faqs = [
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Die wichtigsten Förderprogramme im Überblick</h2>
           <p class="mb-6">
             Die Förderlandschaft ist föderal organisiert — Bund, Länder und EU haben eigene Programme, die
-            sich teils ergänzen, teils überschneiden. Diese Institutionen und Programmtypen begegnen KMU am
-            häufigsten:
+            sich teils ergänzen, teils überschneiden. Zusätzlich betreiben Kammern, Verbände und
+            Bürgschaftsbanken eigene Angebote, die neben den bekannten Förderbanken leicht untergehen.
+            Diese Institutionen und Programmtypen begegnen KMU am häufigsten:
           </p>
           <div class="space-y-4">
             {programs.map((p) => (
@@ -173,28 +209,69 @@ const faqs = [
           </div>
         </section>
 
+        <section id="forschung-entwicklung" class="scroll-mt-24">
+          <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Förderung von Forschung und Entwicklung</h2>
+          <p class="mb-4">
+            Forschungs- und Entwicklungsvorhaben werden in Deutschland über zwei grundsätzlich verschiedene
+            Wege gefördert: über projektbezogene Zuschüsse, die vor Beginn des Vorhabens beantragt und
+            bewilligt werden müssen, und über die steuerliche <strong class="text-ink">Forschungszulage</strong>
+            nach dem Forschungszulagengesetz (FZulG), die unabhängig von Größe, Branche oder aktueller
+            Gewinnsituation offensteht.
+          </p>
+          <p class="mb-4">
+            Die Forschungszulage ist deshalb besonders zugänglich: Gefördert werden Personalkosten für
+            Forschung und Entwicklung, Auftragsforschung bei Dritten sowie Eigenleistungen von
+            Einzelunternehmern und Mitunternehmern, pauschal verrechnet über einen festgelegten
+            Stundensatz. Kleine und mittlere Unternehmen erhalten einen höheren Fördersatz als große
+            Unternehmen. Anders als bei vielen Zuschussprogrammen gibt es kein kompetitives
+            Auswahlverfahren und keine Deckelung durch ein begrenztes Jahresbudget — jedes anspruchsberechtigte
+            Vorhaben wird gefördert, unabhängig davon, wie viele andere Unternehmen im selben Jahr einen
+            Antrag stellen.
+          </p>
+          <p class="mb-4">
+            Daneben existieren projektbezogene Innovationsförderprogramme von Bund und Ländern, die sich
+            insbesondere an kleine und mittlere Unternehmen richten und einen Teil der Entwicklungskosten
+            als Zuschuss übernehmen — oft mit Fokus auf marktnahe Innovationen, Kooperationsprojekte mit
+            Forschungseinrichtungen oder Technologiefelder wie Digitalisierung, Klimaschutz oder
+            Ressourceneffizienz. Auf europäischer Ebene ergänzen Programme der EU-Forschungsförderung
+            dieses Bild, insbesondere für Unternehmen mit größeren, oft grenzüberschreitenden
+            Innovationsvorhaben.
+          </p>
+          <p>
+            Welcher Weg passt, hängt vom Vorhaben ab: Für laufende Entwicklungsarbeit mit eigenem Personal
+            ist die Forschungszulage meist der unkompliziertere Einstieg, weil sie ohne Wettbewerb um ein
+            begrenztes Budget auskommt. Für größere, klar abgegrenzte Innovationsprojekte — insbesondere in
+            Kooperation mit externen Partnern — lohnt sich zusätzlich der Blick auf projektbezogene
+            Zuschussprogramme, die sich mit der Forschungszulage grundsätzlich kombinieren lassen, solange
+            dieselben Kosten nicht doppelt gefördert werden.
+          </p>
+        </section>
+
         <section id="antragsprozess" class="scroll-mt-24">
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">So läuft eine Antragstellung ab</h2>
+          <p class="mb-6">
+            Der genaue Ablauf unterscheidet sich je nach Programm, folgt aber meist demselben Grundmuster:
+          </p>
           <ol class="space-y-4">
             <li class="flex gap-4">
               <span class="font-mono text-sm font-semibold text-gold">01</span>
-              <p><strong class="text-ink">Vorhaben klären.</strong> Welches Ziel, welcher Kapitalbedarf, welcher Zeitraum? Erst danach lässt sich das passende Programm finden.</p>
+              <p><strong class="text-ink">Vorhaben klären.</strong> Welches Ziel, welcher Kapitalbedarf, welcher Zeitraum, welche Kosten im Detail? Erst danach lässt sich das passende Programm finden — je konkreter das Vorhaben beschrieben ist, desto zielgerichteter die Suche.</p>
             </li>
             <li class="flex gap-4">
               <span class="font-mono text-sm font-semibold text-gold">02</span>
-              <p><strong class="text-ink">Programm und Förderweg prüfen.</strong> Zuschuss, Kredit oder Bürgschaft — und ob der Antragsweg direkt oder über die Hausbank läuft.</p>
+              <p><strong class="text-ink">Programm und Förderweg prüfen.</strong> Zuschuss, Kredit, Bürgschaft oder Beteiligungskapital — und ob der Antragsweg direkt bei der Förderstelle oder über die Hausbank läuft. Bei mehreren infrage kommenden Programmen lohnt sich außerdem der Blick auf Kombinierbarkeit und Förderhöchstgrenzen.</p>
             </li>
             <li class="flex gap-4">
               <span class="font-mono text-sm font-semibold text-gold">03</span>
-              <p><strong class="text-ink">Antrag stellen — vor Maßnahmenbeginn.</strong> Bei fast allen Programmen darf noch kein Vertrag unterschrieben oder keine Rechnung bezahlt sein.</p>
+              <p><strong class="text-ink">Antrag stellen — vor Maßnahmenbeginn.</strong> Bei fast allen Programmen darf noch kein Vertrag unterschrieben oder keine Rechnung bezahlt sein. Dazu gehören in der Regel ein Businessplan oder eine Vorhabensbeschreibung, eine Kostenaufstellung und je nach Programm weitere Nachweise wie Bonitätsauskünfte.</p>
             </li>
             <li class="flex gap-4">
               <span class="font-mono text-sm font-semibold text-gold">04</span>
-              <p><strong class="text-ink">Bewilligung abwarten.</strong> Je nach Programm einige Wochen bis wenige Monate, bevor Sie loslegen dürfen.</p>
+              <p><strong class="text-ink">Bewilligung abwarten.</strong> Je nach Programm einige Wochen bis wenige Monate, bevor Sie loslegen dürfen. Bei kreditbasierten Programmen entscheidet zusätzlich die Hausbank über die Kreditwürdigkeit — die Förderbank prüft in der Regel nur die Förderfähigkeit des Vorhabens selbst.</p>
             </li>
             <li class="flex gap-4">
               <span class="font-mono text-sm font-semibold text-gold">05</span>
-              <p><strong class="text-ink">Umsetzung und Verwendungsnachweis.</strong> Nach Abschluss dokumentieren Sie die zweckgemäße Verwendung gegenüber dem Fördermittelgeber.</p>
+              <p><strong class="text-ink">Umsetzung und Verwendungsnachweis.</strong> Nach Abschluss dokumentieren Sie die zweckgemäße Verwendung gegenüber dem Fördermittelgeber — üblicherweise mit Rechnungen, Zahlungsnachweisen und einem kurzen Bericht zum Ergebnis der Maßnahme.</p>
             </li>
           </ol>
         </section>
@@ -202,8 +279,8 @@ const faqs = [
         <section id="anlaesse" class="scroll-mt-24">
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Fördermittel nach Unternehmenssituation</h2>
           <p class="mb-6">
-            Welche Förderung passt, hängt stark vom konkreten Anlass ab. Diese sechs Situationen begegnen
-            uns in der Beratung am häufigsten:
+            Welche Förderung passt, hängt stark vom konkreten Anlass ab. Diese Situationen begegnen uns in
+            der Beratung am häufigsten:
           </p>
           <div class="grid gap-4 sm:grid-cols-2">
             {anlaesse.map((a) => (
@@ -217,6 +294,10 @@ const faqs = [
 
         <section id="haeufige-fehler" class="scroll-mt-24">
           <h2 class="mb-4 text-[1.5rem] font-semibold leading-tight text-ink">Häufige Fehler bei der Antragstellung</h2>
+          <p class="mb-6">
+            Die meisten abgelehnten oder verspäteten Anträge scheitern nicht an der Idee, sondern am
+            Verfahren. Diese Fehler sehen wir am häufigsten:
+          </p>
           <div class="space-y-4">
             {fehler.map((f) => (
               <div class="rounded-sm border-l-[3px] border-gold bg-paper-raised px-5 py-4">
@@ -244,10 +325,17 @@ const faqs = [
 
         <section class="rounded-sm border border-line-paper bg-white p-6 text-[0.82rem] leading-relaxed text-ash/65">
           <p class="mb-1 font-display text-sm font-semibold text-ink">Quellen &amp; weiterführende Informationen</p>
-          <p>
+          <p class="mb-2">
             <a href="https://www.bafa.de/DE/Wirtschaft/Beratung_Finanzierung/Unternehmensberatung/unternehmensberatung_node.html" target="_blank" rel="noopener" class="text-forest underline">BAFA — Förderung von Unternehmensberatungen</a>,
             <a href="https://www.kfw.de/" target="_blank" rel="noopener" class="text-forest underline">KfW Bankengruppe</a>,
-            <a href="https://foerderdatenbank.de/" target="_blank" rel="noopener" class="text-forest underline">Förderdatenbank des Bundes</a>.
+            <a href="https://foerderdatenbank.de/" target="_blank" rel="noopener" class="text-forest underline">Förderdatenbank des Bundes</a>,
+            <a href="https://www.bescheinigung-forschungszulage.de/" target="_blank" rel="noopener" class="text-forest underline">Bescheinigungsstelle Forschungszulage</a>,
+            <a href="https://www.bundeswirtschaftsministerium.de/" target="_blank" rel="noopener" class="text-forest underline">Bundesministerium für Wirtschaft und Energie</a>,
+            <a href="https://vdb-info.de/" target="_blank" rel="noopener" class="text-forest underline">Verband Deutscher Bürgschaftsbanken</a>,
+            <a href="https://ec.europa.eu/regional_policy/de/" target="_blank" rel="noopener" class="text-forest underline">Europäische Kommission — Regionalpolitik (EFRE/ESF+)</a>,
+            <a href="https://www.gesetze-im-internet.de/fzulg/" target="_blank" rel="noopener" class="text-forest underline">Forschungszulagengesetz (FZulG) im Volltext</a>.
+          </p>
+          <p>
             Konditionen und Programme ändern sich laufend — dieser Beitrag ersetzt keine individuelle
             Beratung. Für eine auf Ihr Unternehmen zugeschnittene Einschätzung nutzen Sie unseren
             kostenlosen Fördermittelbericht.
