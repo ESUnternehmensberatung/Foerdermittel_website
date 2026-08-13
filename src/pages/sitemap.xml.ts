@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 // Hand-rolled sitemap (see astro.config.mjs for why @astrojs/sitemap isn't used).
 // Extend this list as new pages under src/pages/ go live.
-const routes = ['/'];
+const routes = ['/', '/wissen/', '/impressum/', '/datenschutz/'];
 
 export const GET: APIRoute = ({ site }) => {
   const base = site?.toString().replace(/\/$/, '') ?? '';
