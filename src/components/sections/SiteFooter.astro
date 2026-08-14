@@ -17,11 +17,16 @@ const cols = [
     { label: 'Datenschutz', href: '/datenschutz/' },
   ]},
 ];
+
+const contacts = [
+  { name: 'Oliver Schettle', phone: '+49 40 8090 319 129', phoneHref: '+49408090319129', email: 'kontakt@prospero.hamburg' },
+  { name: 'Eduard Schmal', phone: '+49 1522 6859524', phoneHref: '+4915226859524', email: 'info@schmal-unternehmensberatung.de' },
+];
 ---
 
 <footer class="bg-[#0D1F19] px-6 pb-8 pt-12 text-mist">
   <div class="mx-auto max-w-[1120px]">
-    <div class="grid grid-cols-1 gap-8 border-b border-line-ink pb-8 sm:grid-cols-2 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-8 border-b border-line-ink pb-8 sm:grid-cols-2 md:grid-cols-5">
       <div class="font-display text-[1.05rem] font-semibold">
         Fördermittel<em class="not-italic text-gold-soft">-Finder</em>
       </div>
@@ -41,6 +46,18 @@ const cols = [
           </ul>
         </div>
       ))}
+      <div>
+        <h5 class="mb-3.5 font-mono text-[0.7rem] uppercase tracking-[0.1em] opacity-60">Kontakt</h5>
+        <ul class="grid gap-4 text-[0.85rem] opacity-85">
+          {contacts.map((c) => (
+            <li>
+              <p class="mb-0.5 opacity-100">{c.name}</p>
+              <a href={`tel:${c.phoneHref}`} class="block hover:text-gold-soft">{c.phone}</a>
+              <a href={`mailto:${c.email}`} class="block hover:text-gold-soft">{c.email}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
     <div class="flex flex-wrap justify-between gap-2 pt-5 text-[0.78rem] opacity-60">
       <span>Fördermittel-Finder — eine Kooperation von ES | Unternehmensberatung &amp; Prospero Beratungsgesellschaft mbH</span>
