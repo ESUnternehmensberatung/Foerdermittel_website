@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // incompatibility, `_routes.reduce` on undefined). Sitemap is hand-rolled in
 // src/pages/sitemap.xml.ts instead until the integration catches up.
 export default defineConfig({
-  site: 'https://foerdermittel-finder.de/',
+  site: 'https://fördermittel-finder.de/',
   integrations: [
     tailwind({ applyBaseStyles: false }),
   ],
