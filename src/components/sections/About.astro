@@ -5,12 +5,14 @@ const people = [
     role: 'Prospero Beratungsgesellschaft mbH',
     text: 'Berater und Partner für den Mittelstand seit 1997: ein inhabergeführtes, BAFA-gelistetes Beratungsunternehmen mit Schwerpunkt auf Umstrukturierung, Wachstum und Finanzierung — für Unternehmen im Wandel und mit Investitionsvorhaben.',
     href: 'https://www.prospero.hamburg/',
+    bookingHref: 'https://bookings.cloud.microsoft/book/Prospero@prospero.hamburg/?ismsaljsauthenabled=true',
   },
   {
     name: 'Eduard Schmal',
     role: 'ES | Unternehmensberatung',
     text: 'Ihr Sparringspartner für die digitale Zukunft: Beratung mit Schwerpunkt auf digitaler Transformation und KI-Implementierung — modular, fokussiert und auf Ihre Situation zugeschnitten. Prozesse digitalisieren, KI sinnvoll einsetzen, Entscheidungen auf belastbare Zahlen stützen.',
     href: 'https://schmal-unternehmensberatung.de/',
+    bookingHref: 'https://calendar.app.google/bYrVTHzVyipgsc2k7',
   },
 ];
 ---
@@ -22,11 +24,14 @@ const people = [
     <p class="mb-9 max-w-[62ch] text-[0.98rem] leading-relaxed text-ash/80">Den Mittelstand mit passgenauer Förderung voranbringen.</p>
     <div class="reveal-group grid grid-cols-1 gap-6 md:grid-cols-2">
       {people.map((p) => (
-        <a href={p.href} target="_blank" rel="noopener" class="card-hover block rounded-sm border border-line-paper bg-white p-6">
-          <h4 class="font-display text-base font-semibold">{p.name}</h4>
-          <p class="mb-2 font-mono text-xs uppercase tracking-wide text-forest">{p.role}</p>
-          <p class="text-[0.86rem] leading-relaxed text-ash/78">{p.text}</p>
-        </a>
+        <div class="card-hover rounded-sm border border-line-paper bg-white p-6">
+          <a href={p.href} target="_blank" rel="noopener" class="block">
+            <h4 class="font-display text-base font-semibold">{p.name}</h4>
+            <p class="mb-2 font-mono text-xs uppercase tracking-wide text-forest">{p.role}</p>
+            <p class="text-[0.86rem] leading-relaxed text-ash/78">{p.text}</p>
+          </a>
+          <a href={p.bookingHref} target="_blank" rel="noopener" class="btn-outline-forest mt-5 inline-block !px-4 !py-2.5 text-[0.82rem]">Termin buchen</a>
+        </div>
       ))}
     </div>
   </div>
