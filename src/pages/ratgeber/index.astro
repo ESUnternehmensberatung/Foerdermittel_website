@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/sections/SiteHeader.astro';
+import SiteFooter from '../../components/sections/SiteFooter.astro';
+import { withBase } from '../../lib/base';
+
+const artikel = (await getCollection('ratgeber', ({ data }) => !data.entwurf)).sort(
+  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf(),
+);
+const datum = new Intl.DateTimeFormat('de-DE', { dateStyle: 'long' });
+---
+
+<Layout
+  title="Ratgeber Fördermittel für Bestandsunternehmen | Fördermittel-Finder"
+  description="Aktuelle Fachartikel zu Fördermitteln, Finanzierung und Pflichten für mittelständische Bestandsunternehmen: geprüft, mit Quellen und Stand."
+  path="/ratgeber/"
+>
+  <SiteHeader />
+  <main class="bg-paper">
+    <header class="border-b border-line-paper px-6 py-16">
+      <div class="mx-auto max-w-[760px]">
+        <p class="eyebrow-forest mb-3">Ratgeber</p>
+        <h1 class="mb-5 text-[2rem] font-semibold leading-tight md:text-[2.5rem]">
+          Fördermittel für Bestandsunternehmen: aktuell und mit Quellen
+        </h1>
+        <p class="max-w-[64ch] text-[1.05rem] leading-relaxed text-ash/80">
+          Jeder Artikel beantwortet eine konkrete Frage aus der Praxis. Mit Quellen, Stand und ohne Werbesprache.
+          Förderprogramme ändern sich oft. Prüfen Sie deshalb vor einem Antrag immer den aktuellen Stand, oder lassen
+          Sie es uns mit dem kostenlosen Fördermittelbericht für Sie tun.
+        </p>
+      </div>
+    </header>
+
+    <section class="px-6 py-16">
+      <ul class="mx-auto grid max-w-[760px] gap-6">
+        {artikel.map((a) => (
+          <li class="rounded-sm border border-line-paper bg-paper-raised p-6">
+            <p class="mb-2 font-mono text-xs text-ash/60">{datum.format(a.data.datum)}</p>
+            <h2 class="mb-2 text-[1.3rem] font-semibold leading-tight text-ink">
+              <a href={withBase(`/ratgeber/${a.slug}/`)} class="hover:text-forest">{a.data.title}</a>
+            </h2>
+            <p class="text-[0.98rem] leading-relaxed text-ash/80">{a.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="bg-ink px-6 py-20 text-center">
+      <h2 class="mx-auto mb-4 max-w-[24ch] text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.4rem]">
+        Welche Fördermittel zu Ihrem Unternehmen passen?
+      </h2>
+      <p class="mx-auto mb-8 max-w-[52ch] text-mist/80">Kostenlos, unverbindlich, ohne Verkaufsdruck.</p>
+      <a href="https://form.jotform.com/262243725368360" target="_blank" rel="noopener" class="btn-gold">Kostenlosen Fördermittelbericht anfordern</a>
+    </section>
+  </main>
+  <SiteFooter />
+</Layout>

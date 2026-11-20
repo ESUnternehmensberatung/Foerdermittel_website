@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/sections/SiteHeader.astro';
+import SiteFooter from '../../components/sections/SiteFooter.astro';
+import { withBase } from '../../lib/base';
+
+export async function getStaticPaths() {
+  const artikel = await getCollection('ratgeber', ({ data }) => !data.entwurf);
+  return artikel.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+
+const { a } = Astro.props;
+const { Content } = await a.render();
+const fmt = new Intl.DateTimeFormat('de-DE', { dateStyle: 'long' });
+const stand = a.data.stand ?? a.data.datum;
+const path = `/ratgeber/${a.slug}/`;
+---
+
+<Layout title={`${a.data.title} | Fördermittel-Finder`} description={a.data.description} path={path}>
+  <SiteHeader />
+  <main class="bg-paper">
+    <header class="border-b border-line-paper px-6 py-16">
+      <div class="mx-auto max-w-[760px]">
+        <p class="eyebrow-forest mb-3"><a href={withBase('/ratgeber/')} class="hover:underline">Ratgeber</a></p>
+        <h1 class="mb-5 text-[2rem] font-semibold leading-tight md:text-[2.4rem]">{a.data.title}</h1>
+        <p class="max-w-[64ch] text-[1.05rem] leading-relaxed text-ash/80">{a.data.description}</p>
+        <p class="mt-4 font-mono text-xs text-ash/55">
+          Eduard Schmal · Stand: {fmt.format(stand)} · Keine Rechts- oder Steuerberatung
+        </p>
+      </div>
+    </header>
+
+    <article class="px-6 py-16">
+      <div class="ratgeber-text mx-auto max-w-[760px] text-[0.98rem] leading-relaxed text-ash/85">
+        <Content />
+      </div>
+    </article>
+
+    <section class="bg-ink px-6 py-20 text-center">
+      <h2 class="mx-auto mb-4 max-w-[24ch] text-[1.9rem] font-semibold leading-tight text-mist md:text-[2.4rem]">
+        Welche Fördermittel zu Ihrem Vorhaben passen?
+      </h2>
+      <p class="mx-auto mb-8 max-w-[52ch] text-mist/80">
+        Fünf Minuten Formular, danach erhalten Sie Ihren persönlichen Fördermittelbericht. Kostenlos und unverbindlich.
+      </p>
+      <a href="https://form.jotform.com/262243725368360" target="_blank" rel="noopener" class="btn-gold">Kostenlosen Fördermittelbericht anfordern</a>
+    </section>
+  </main>
+  <SiteFooter />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.data.title,
+    description: a.data.description,
+    datePublished: a.data.datum.toISOString().slice(0, 10),
+    dateModified: stand.toISOString().slice(0, 10),
+    author: { '@type': 'Person', name: 'Eduard Schmal' },
+    publisher: { '@type': 'Organization', name: 'Fördermittel-Finder' },
+    mainEntityOfPage: new URL(path, Astro.site).toString(),
+    about: a.data.frage,
+  })} />
+</Layout>
+
+<style is:global>
+  .ratgeber-text h2 { margin: 2.75rem 0 1rem; font-size: 1.5rem; line-height: 1.25; font-weight: 600; color: #122A22; }
+  .ratgeber-text h3 { margin: 2rem 0 0.75rem; font-size: 1.15rem; font-weight: 600; color: #122A22; }
+  .ratgeber-text p { margin-bottom: 1rem; }
+  .ratgeber-text ul, .ratgeber-text ol { margin: 0 0 1.25rem 1.25rem; }
+  .ratgeber-text ul { list-style: disc; }
+  .ratgeber-text ol { list-style: decimal; }
+  .ratgeber-text li { margin-bottom: 0.4rem; }
+  .ratgeber-text a { color: #24543F; text-decoration: underline; text-underline-offset: 2px; }
+  .ratgeber-text strong { color: #122A22; }
+  .ratgeber-text blockquote { margin: 1.5rem 0; padding: 1rem 1.25rem; border-left: 3px solid #C68A2E; background: #EAE2C8; }
+  .ratgeber-text table { width: 100%; margin: 1.25rem 0; border-collapse: collapse; font-size: 0.92rem; }
+  .ratgeber-text th, .ratgeber-text td { padding: 0.5rem 0.6rem; border-bottom: 1px solid #D8CFB4; text-align: left; vertical-align: top; }
+  .ratgeber-text th { font-weight: 600; color: #122A22; }
+  @media (max-width: 640px) { .ratgeber-text table { display: block; overflow-x: auto; } }
+</style>

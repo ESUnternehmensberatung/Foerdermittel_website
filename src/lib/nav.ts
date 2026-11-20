@@ -15,5 +15,6 @@ export const navItems: NavItem[] = [
   { id: 'ablauf', label: 'Ablauf' },
   { id: 'fuer-wen', label: 'Für wen' },
   { href: '/wissen/', label: 'Wissen' },
+  { href: '/ratgeber/', label: 'Ratgeber' },
   { id: 'kooperation', label: 'Über uns' },
 ];
