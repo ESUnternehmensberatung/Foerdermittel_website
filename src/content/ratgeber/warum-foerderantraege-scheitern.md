@@ -3,6 +3,7 @@ title: "Warum Förderanträge scheitern: Die Unterlagen, die Betrieben fehlen"
 description: "Die meisten Förderanträge scheitern nicht am Programm, sondern an der Vorbereitung. Diese Fehler sehen wir in der Praxis immer wieder, und so vermeiden Sie sie."
 datum: 2026-11-20
 frage: "Was brauche ich, damit mein Förderantrag bewilligt wird?"
+entwurf: true
 ---
 
 **Kurz beantwortet:** Die meisten Betriebe scheitern nicht daran, dass es kein passendes Programm gibt. Sie scheitern an fünf Dingen: Das Vorhaben wurde zu früh begonnen, aktuelle Zahlen fehlen, es gibt keinen Plan, der KMU-Status ist falsch eingeschätzt, oder die Hausbank ist nicht eingebunden. Alle fünf lassen sich vorher lösen.

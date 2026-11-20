@@ -1,6 +1,11 @@
 ---
 import { withBase } from '../../lib/base';
-import { navItems } from '../../lib/nav';
+import { getCollection } from 'astro:content';
+import { navItems as alleNavItems } from '../../lib/nav';
+
+// Ratgeber erst in der Navigation zeigen, wenn mindestens ein Artikel freigegeben ist.
+const hatRatgeber = (await getCollection('ratgeber', ({ data }) => !data.entwurf)).length > 0;
+const navItems = alleNavItems.filter((i) => i.href !== '/ratgeber/' || hatRatgeber);
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-between gap-6 border-b border-line-ink/60 bg-ink/95 px-6 py-4 backdrop-blur">

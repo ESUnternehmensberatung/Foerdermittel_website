@@ -3,6 +3,7 @@ title: "E-Rechnung ab 2027: Wer jetzt umstellen muss und was die Umstellung kost
 description: "Ab 1. Januar 2027 müssen Unternehmen mit mehr als 800.000 € Vorjahresumsatz E-Rechnungen ausstellen, ab 2028 alle. Was das heißt, welche Formate gelten und wie Sie die Umstellung angehen."
 datum: 2026-11-20
 frage: "Muss ich ab 2027 E-Rechnungen schreiben, und gibt es Förderung für die Umstellung?"
+entwurf: true
 ---
 
 **Kurz beantwortet:** Wenn Ihr Unternehmen **2026 mehr als 800.000 € Umsatz** erzielt, müssen Sie **ab 1. Januar 2027** an andere Unternehmen im Inland E-Rechnungen ausstellen. **Ab 1. Januar 2028** gilt das für alle Unternehmen. **Empfangen** müssen Sie E-Rechnungen bereits seit 1. Januar 2025. Eine PDF-Datei ist **keine** E-Rechnung.

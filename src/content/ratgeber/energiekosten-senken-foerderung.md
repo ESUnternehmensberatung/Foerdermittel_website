@@ -3,6 +3,7 @@ title: "Energiekosten senken mit Förderung: Diese Programme gibt es für Bestan
 description: "Energiepreise sind das größte Geschäftsrisiko im Mittelstand. Welche Bundesförderung es für Energieeffizienz gibt, wie Zuschuss und Kredit funktionieren und worauf Sie achten müssen."
 datum: 2026-11-20
 frage: "Welche Förderung gibt es für Energieeffizienz in meinem Betrieb?"
+entwurf: true
 ---
 
 **Kurz beantwortet:** Die wichtigste Bundesförderung ist die **Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft (EEW)**. Es gibt sie als **Zuschuss über das BAFA** oder als **Förderkredit mit Tilgungszuschuss über die KfW (Programm 295)**. Die Richtlinie gilt bis Ende 2028. Der Antrag muss **vor Beginn der Maßnahme** gestellt werden.

@@ -1,11 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import { withBase } from '../../lib/base';
+
+const hatRatgeber = (await getCollection('ratgeber', ({ data }) => !data.entwurf)).length > 0;
 
 const cols = [
   { title: 'Seite', links: [
     { label: 'Ablauf', href: '/#ablauf' },
     { label: 'Wissen', href: '/wissen/' },
-    { label: 'Ratgeber', href: '/ratgeber/' },
+    ...(hatRatgeber ? [{ label: 'Ratgeber', href: '/ratgeber/' }] : []),
     { label: 'Über uns', href: '/#kooperation' },
   ]},
   { title: 'Standorte', links: [

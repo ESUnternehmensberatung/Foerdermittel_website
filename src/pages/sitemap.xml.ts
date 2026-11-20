@@ -3,11 +3,15 @@ import { getCollection } from 'astro:content';
 
 // Hand-rolled sitemap (see astro.config.mjs for why @astrojs/sitemap isn't used).
 // Extend this list as new pages under src/pages/ go live.
-const staticRoutes = ['/', '/wissen/', '/ratgeber/', '/impressum/', '/datenschutz/'];
+const staticRoutes = ['/', '/wissen/', '/impressum/', '/datenschutz/'];
 
 export const GET: APIRoute = async ({ site }) => {
   const artikel = await getCollection('ratgeber', ({ data }) => !data.entwurf);
-  const routes = [...staticRoutes, ...artikel.map((a) => `/ratgeber/${a.slug}/`)];
+  const routes = [
+    ...staticRoutes,
+    ...(artikel.length > 0 ? ['/ratgeber/'] : []),
+    ...artikel.map((a) => `/ratgeber/${a.slug}/`),
+  ];
   const base = site?.toString().replace(/\/$/, '') ?? '';
   const urls = routes
     .map((path) => `  <url><loc>${base}${path}</loc></url>`)

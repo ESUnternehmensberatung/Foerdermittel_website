@@ -3,6 +3,7 @@ title: "BAFA-Beratungsförderung bis 2028 verlängert: Was sich ab 1. Januar 202
 description: "Die BAFA-Förderung von Unternehmensberatungen für KMU läuft bis Ende 2028 weiter. Was gefördert wird, was nicht, und was sich beim Antrag ab 2027 ändert."
 datum: 2026-11-20
 frage: "Gibt es die BAFA-Förderung für Unternehmensberatung 2027 noch, und was ändert sich beim Antrag?"
+entwurf: true
 ---
 
 **Kurz beantwortet:** Ja. Die Richtlinie „Förderung von Unternehmensberatungen für KMU“ ist mit der zweiten Änderung vom 15. Oktober 2026 **bis zum 31. Dezember 2028 verlängert** worden. Ab dem **1. Januar 2027** gelten geänderte Bedingungen. Unter anderem läuft der Antrag dann nur noch über ein **ELSTER-Unternehmenskonto oder die BundID**. Wer 2027 eine geförderte Beratung plant, sollte den Zugang jetzt einrichten.

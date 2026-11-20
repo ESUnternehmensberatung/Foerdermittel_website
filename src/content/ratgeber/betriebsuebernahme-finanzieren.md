@@ -3,6 +3,7 @@ title: "Betrieb übernehmen: So wird die Nachfolge finanziert"
 description: "Förderkredit, Bürgschaft, Verkäuferdarlehen: Wie Nachfolgerinnen und Nachfolger eine Betriebsübernahme finanzieren, und warum Vorbereitung über den Erfolg entscheidet."
 datum: 2026-11-20
 frage: "Wie finanziere ich eine Betriebsübernahme mit Förderkredit und Bürgschaft?"
+entwurf: true
 ---
 
 **Kurz beantwortet:** Eine Übernahme wird fast nie aus einer Quelle finanziert. Typisch ist eine Kombination aus **Eigenkapital**, einem **Förderkredit** (z. B. dem ERP-Förderkredit Gründung und Nachfolge der KfW), einer **Bürgschaft der Bürgschaftsbank** und oft einem **Verkäuferdarlehen**. Entscheidend ist, dass Betrieb und Käufer gut vorbereitet sind, bevor die Bank gefragt wird.
